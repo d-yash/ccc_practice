@@ -36,7 +36,7 @@
         echo "Glued String : " . implode(', ', $arr) . "<br>";
         //explode($separator, $str)     -->     Returns array, elements will be decided using separator
         $fruits = "Banana, Watermelon, Apple, Kiwi";
-        echo "Formed Array"
+        echo "Formed Array" . explode(",", $fruits) . "<br>";
     }
     
     practice("    Hello, This is practice file of string functions. This is basic file.");

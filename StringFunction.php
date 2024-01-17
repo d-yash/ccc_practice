@@ -4,8 +4,8 @@
         echo $str[0] . "<br>";
         echo $str[-2] . "<br><br>";
         
-        echo "String length : " . strlen($str) ."<br><br>";
-
+        echo "String length : " . strlen($str) ."<br>";
+        echo "String length : " . strlen("  ") . "<br><br>";
         // Doesn't change the original str
         //str_replace($strToReplace, $replacement, $str)
         echo "String replace : " . str_replace("practice", $lang, $str) . "<br>";          
@@ -26,6 +26,7 @@
         echo "Converting to uppercase : " . strtoupper($str) . "<br><br>";
 
         $trimmed = trim($str);
+        echo "Trimmed ex : " . trim("   hello, guys   ") . "<br>";
         echo "Trimming white space : " . $trimmed . "  strlen = " . strlen($trimmed) . "<br><br>";
     
         $arr = array("Porsche", "Bently", "BMW");
@@ -36,7 +37,29 @@
         echo "Glued String : " . implode(', ', $arr) . "<br>";
         //explode($separator, $str)     -->     Returns array, elements will be decided using separator
         $fruits = "Banana, Watermelon, Apple, Kiwi";
-        echo "Formed Array" . explode(",", $fruits) . "<br>";
+        $fruits_arr = explode(",", $fruits);
+        echo "Formed Array : ";
+        print_r($fruits_arr);
+
+        $userInput_html = "<a href='test'>Test</a>";
+        $converted_html = htmlspecialchars($userInput_html);
+        echo "<br><br>HTML special char output : " . $converted_html . "<br>";
+        echo "HTML entities output : " . htmlentities($userInput_html) . "<br><br>";
+
+        //str_repeat($str, $times)
+        $starSymbol = "*";
+        echo str_repeat($starSymbol, 5) . "<br><br>";
+
+        echo "Reversed String : " . strrev($str) . "<br>";
+
+        //will shuffle chars 
+        echo "Shuffled String : " . str_shuffle($str) . "<br>";
+        echo "String split by 2 char : "; print_r(str_split($str, 2));
+
+        echo "<br><br>Counting \"this\" word : " . str_word_count($str) . "<br>";
+        echo "Replacing portion of string with another : " . substr_replace($str, $converted_html, 20, 26) . "<br>";
+        echo "Replacing portion of string with another : " . substr_replace($str, "#", 0, 26);          //will remove char from 0-25 and append the string till 25
+
     }
     
     practice("    Hello, This is practice file of string functions. This is basic file.");

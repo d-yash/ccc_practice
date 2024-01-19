@@ -86,3 +86,4 @@ function practice($str)
 }
 
 practice("    Hello, This is practice file of string functions. This is basic file.");
+?>

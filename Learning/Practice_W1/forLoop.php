@@ -77,7 +77,45 @@
     }
     echo "<br>";
 
-    for($i=1; $i<$noOfLines; $i++){
-        for($j)
+    echo "<pre>";
+    for($i=0; $i<$noOfLines; $i++){
+        for($j=0; $j<2*($noOfLines-$i)-1; $j++){
+            echo " ";
+        }
+        for($k=0; $k<=$i; $k++){
+            echo "* ";
+        }
+        echo "<br>";
     }
+    echo "</pre><br>";
+
+    echo "<pre>";
+    for($i=0; $i<$noOfLines; $i++){
+        for($j=0; $j<2*($noOfLines-$i)-1; $j++){
+            echo " ";
+        }
+        for($k=0; $k<2*$i + 1; $k++){
+            echo "* ";
+        }
+        echo "<br>";
+    }
+    echo "</pre><br>";
+
+    echo "<pre>";
+    for($i=0; $i<$noOfLines; $i++){
+        for($j=0; $j<2*$i; $j++){
+            echo " ";
+        }
+        for($k=0; $k<2*($noOfLines - $i) - 1; $k++){
+            echo "* ";
+        }
+        echo "<br>";
+    }
+    echo "</pre><br>";
 ?>
+   <!-- *
+  **
+ ***
+**** -->
+<!-- hr@cybercom -->
+<!-- 8758007655 -  -->

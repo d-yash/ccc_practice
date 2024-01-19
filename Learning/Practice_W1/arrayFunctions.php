@@ -98,7 +98,7 @@
     $sumOfSquare = array_reduce($squared, fn($carry, $val)=> $carry+$val, 0);
     echo "Sum of Square : " . $sumOfSquare . "<br>";
 
-    echo "<h4>6. Array Slicing</h4>";
+    echo "<h4>7. Array Slicing</h4>";
     $arr = range(1,10);
     $sliced = array_slice($arr, 2);
     printArray("From 2 to end : ", $sliced);

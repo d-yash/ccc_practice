@@ -1,0 +1,4 @@
+git add .
+git commit -m "msg"
+Home : git push github Practice
+Office : git push origin Practice

@@ -1,10 +1,22 @@
 <?php
+    // function update_quary($table_name, $data, $condition){
+    //     $column = $value = [];
+    //     foreach($data as $col => $val){
+    //         $temp_col = "`" . $col . "`";
+    //         $temp_val = "'" . addslashes($val) . "'";
+    //         $str = $temp_col . "=" . $temp_val;
+    //     }
+    //     echo "UPDATE {$table_name} SET WHERE  ";
+    // }
+    echo "<pre>";
+    print_r($_POST["product"]);
+    exit;
     $servername = "127.0.0.1";
     $username = "root";
     $password = "";
     $dbname = "ccc_practice";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
     if($conn->connect_error){
         die("Connection failed: " . $conn->connect_error);

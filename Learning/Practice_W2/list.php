@@ -24,6 +24,7 @@
     
     <ul>
         <?php
+        require ('../Function/mysql_func.php');
         $servername = "127.0.0.1";
         $username = "root";
         $password = "";
@@ -35,12 +36,13 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $query = "SELECT * FROM ccc_product ORDER BY id DESC LIMIT 10";
+        $query = select("ccc_product", "*") . " ORDER BY product_id DESC LIMIT 10";
         $result = $conn->query($query);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<li>{$row['id']} - {$row['product_name']} - {$row['sku']} - {$row['product_type']} - {$row['category']} - {$row['manufacturer_cost']} - {$row['shipping_cost']} - {$row['total_cost']} - {$row['price']} - {$row['status']} - {$row['created_at']} - {$row['updated_at']}</li>";
+                echo "<li>{$row['product_id']} - {$row['product_name']} - {$row['sku']} - {$row['product_type']} - {$row['category']} - {$row['manufacturer_cost']} - {$row['shipping_cost']} - {$row['total_cost']} - {$row['price']} - {$row['status']} - {$row['created_at']} - {$row['updated_at']}</li>";
+                // echo "<li>{$row['product_id']} - {$row['product_name']} - {$row['sku']}</li>";
             }
         } else {
             echo "<li>No records found</li>";

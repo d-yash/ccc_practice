@@ -11,7 +11,6 @@
         $row = $col;
         $mid = (int)($col/2) + 1;
     }
-    
     {
         //Brute force - O(3n^2)
         // for($i=1; $i<=$row; $i++){
@@ -34,7 +33,6 @@
         //     echo "<br>";
         // }
     }
-
     //Optimal - O(n^2)
     for($i=1; $i<=$row; $i++){
         for($j=1; $j<=$col; $j++){

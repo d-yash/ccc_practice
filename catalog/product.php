@@ -1,9 +1,12 @@
 <?php
-  require 'sql/connection.php';
+  // require 'sql/connection.php';
   require 'sql/functions.php';
   require '../Learning/Function/php_func.php';
   $conn = getDBConnection("ccc_practice");
   $button_text="submit";
+  $query1="SELECT * FROM `ccc_category`";
+  $result1 = mysqli_query($conn, $query1);
+  $categoryTable = mysqli_fetch_array($result1);
   $key = [];
   $id;
   
@@ -14,7 +17,7 @@
       $key['product_name'] = "";
       $key['sku'] = "";
       $key['product_type'] = "simple";
-      $key['category'] = 1;
+      $key['cat_id'] = 1;
       $key['manufacturer_cost'] = "";
       $key['shipping_cost'] = "";
       $key['total_cost'] = "";
@@ -34,7 +37,7 @@
           $key['product_name'] = $row["product_name"];
           $key['sku'] = $row["sku"];
           $key['product_type'] = $row["product_type"];
-          $key['category'] = $row["category"];
+          $key['cat_id'] = $row["cat_id"];
           $key['manufacturer_cost'] = $row["manufacturer_cost"];
           $key['shipping_cost'] = $row["shipping_cost"];
           $key['total_cost'] = $row["total_cost"];
@@ -49,7 +52,6 @@
   setValue();   //defaul init
 
   if (isset($_GET['id']) && getParams("action")=="delete") {
-    echo "DELETE";
     $id=getParams("id");
     $query =delete_query("ccc_product",['product_id'=>$id]);
     $res=mysqli_query($conn,$query);
@@ -60,37 +62,39 @@
       echo "<script>location. href='product_list.php'</script>";
     }
   } 
-  if(isset($_GET['id']) && getParams("action"=="edit")){
+  if(isset($_GET['id']) && getParams("action")=="edit"){
     global $button_text;
     global $id;
     $id = getParams("id");
     $button_text = "update";
     setValue();
   }
-//     if (getParams('submit')) {
-//       $keys = getKeysFromPostRequest();
-//       for ($i = 0; $i < count($keys); $i++) {
-//           $insert_query = insert_query($keys[$i], getParams($keys[$i]));
-//           if ($insert_query) {
-//               echo "<script>alert('Data submitted successfully')</script>";
-//           } else {
-//               echo "<script>alert('Data not submitted')</script>";
-//           }
-//       };
-//   };
-//   if (getParams('update')) {
-//     $keys = getKeysFromPostRequest();
-//     for ($i = 0; $i < count($keys); $i++) {
-//         $update_query = update_query($keys[$i], ['product_id' => getParams('product_id')], getParams($keys[$i]));
-//         if ($update_query) {
-//             echo "<script>alert('Data updated successfully')</script>";
-//             echo "<script>location. href='product_list.php'</script>";
-//         } else {
-//             echo "<script>alert('Data not updated')</script>";
-//             echo "<script>location. href='product_list.php'</script>";
-//         }
-//     };
-// };
+  if (getParams('submit') == "Submit" && isset($_POST['product'])) {
+    // $keys = getKeysFromPostRequest();
+    // for ($i = 0; $i < count($keys); $i++) {
+        $insertQuery = insert_query("ccc_product", getParams('product'));
+        if ($conn->query($insertQuery)) {
+            echo "<script>alert('Data submitted Successfully')</script>";
+            echo "<script>location. href='product.php'</script>";
+        } else {
+          echo "<script>alert('Data not submitted')</script>";
+          echo "<script>location. href='product.php'</script>";
+        }
+    };
+  // };
+  if (getParams('update') == "Update" && isset($_POST['product'])) {
+    // $keys = getKeysFromPostRequest();
+    // for ($i = 0; $i < count($keys); $i++) {
+        $updateQuery = update_query("ccc_product", getParams('product'), ['product_id' => getParams('id')]);
+        if ($conn->query($updateQuery)) {
+            echo "<script>alert('Data updated Successfully')</script>";
+            echo "<script>location. href='product_list.php'</script>";
+        } else {
+            echo "<script>alert('Data not updated')</script>";
+            echo "<script>location. href='product_list.php'</script>";
+        }
+    };
+  // };
     $conn->close();
   // }
 ?>
@@ -122,17 +126,16 @@
           <label for="bundle">Bundle</label>
         </div>
       </div>
-      <label for="cars">Category : </label>
-      <select name="product[category]">
-        <option value="bar_gameroom" <?php echo ($key['category'] == 1) ? 'selected' : ''; ?>>Bar & Game Room</option>
-        <option value="bedroom" <?php echo ($key['category'] == 2) ? 'selected' : ''; ?>>Bedroom</option>
-        <option value="decor" <?php echo ($key['category'] == 3) ? 'selected' : ''; ?>>Decor</option>
-        <option value="dining_kitchen" <?php echo ($key['category'] == 4) ? 'selected' : ''; ?>>Dining & Kitchen</option>
-        <option value="lighting" <?php echo ($key['category'] == 5) ? 'selected' : ''; ?>>Lighting</option>
-        <option value="living_room" <?php echo ($key['category'] == 6) ? 'selected' : ''; ?>>Living Room</option>
-        <option value="mattresses" <?php echo ($key['category'] == 7) ? 'selected' : ''; ?>>Mattresses</option>
-        <option value="office" <?php echo ($key['category'] == 8) ? 'selected' : ''; ?>>Office</option>
-        <option value="outdoor" <?php echo ($key['category'] == 9) ? 'selected' : ''; ?>>Outdoor</option>
+      <label for="category">Category : </label>
+      <select name="product[cat_id]" id="product_category" class="input">
+          <?php
+          if (mysqli_num_rows($result1) > 0) {
+            while ($row1 = mysqli_fetch_assoc($result1)) {
+              $selected = ($row1['cat_id'] == $key['cat_id']) ? 'selected' : '';
+              echo "<option value='{$row1['cat_id']}' $selected>{$row1['name']}</option>";
+            }
+          }
+          ?>
       </select>
       <label for="manufacturer_cost">Manufacturer Cost : </label>
       <input type="text" name="product[manufacturer_cost]" value="<?php echo $key['manufacturer_cost']; ?>" />

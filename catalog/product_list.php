@@ -58,7 +58,7 @@
                     echo "<td>{$row['product_id']}</td>";
                     echo "<td>{$row['product_name']}</td>";
                     echo "<td>{$row['sku']}</td>";
-                    echo "<td>{$catArray[$row['category']]}</td>";
+                    echo "<td>{$catArray[$row['cat_id']]}</td>";
                     echo "<td><a href='product.php?action=edit&id={$row['product_id']}'>Edit</a></td>";
                     echo "<td><a href='product.php?action=delete&id={$row["product_id"]}'>Delete</a></td>";
                     echo "</tr>";

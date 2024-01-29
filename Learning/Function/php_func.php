@@ -8,7 +8,7 @@
         } elseif (isset($_REQUEST[$var])) {
             return $_REQUEST[$var];
         } else {
-            return "Var not found!!";
+            return array();
         }
     }
     function getKeysFromPostRequest()

@@ -69,7 +69,7 @@
     $button_text = "update";
     setValue();
   }
-  if (getParams('submit') == "Submit" && isset($_POST['product'])) {
+  if ($button_text == "submit" && isset($_POST['product'])) {
     // $keys = getKeysFromPostRequest();
     // for ($i = 0; $i < count($keys); $i++) {
         $insertQuery = insert_query("ccc_product", getParams('product'));
@@ -82,7 +82,7 @@
         }
     };
   // };
-  if (getParams('update') == "Update" && isset($_POST['product'])) {
+  if ($button_text == "update" && isset($_POST['product'])) {
     // $keys = getKeysFromPostRequest();
     // for ($i = 0; $i < count($keys); $i++) {
         $updateQuery = update_query("ccc_product", getParams('product'), ['product_id' => getParams('id')]);

@@ -1,5 +1,5 @@
 <?php
-    require 'sql/connection.php';
+    // require 'sql/connection.php';
     require 'sql/functions.php';
     $conn = getDBConnection("ccc_practice");
     $query = select("ccc_category", "*");

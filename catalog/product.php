@@ -125,7 +125,7 @@ $conn->close();
           <label for="simple">Simple</label>
         </div>
         <div id="radio_div">
-          <input type="radio" id="bundle" name="product[product_type]" value="bundle" <?php echo ($key['product_type'] == 'bundle') ? 'checked' : ''; ?> />
+          <input type="radio" id="bundle" name  ="product[product_type]" value="bundle" <?php echo ($key['product_type'] == 'bundle') ? 'checked' : ''; ?> />
           <label for="bundle">Bundle</label>
         </div>
       </div>
@@ -155,7 +155,7 @@ $conn->close();
       </select>
         <div class="child_date">
           <label for="created_at">Created At : </label>
-          <input type="date" name="product[created_at]" value="<?php echo $key['created_at']; ?>"/>
+          
         </div>
         <div class="child_date">
           <label for="updated_at">Updated At : </label>

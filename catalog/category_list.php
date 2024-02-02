@@ -35,22 +35,27 @@
         </thead>
         <tbody>
             <?php
-            require 'sql/connection.php';
-            require 'sql/functions.php';
-            $conn = getDBConnection("ccc_practice");
-            $query = select("ccc_category", "*");
-            $result = $conn->query($query);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>{$row['cat_id']}</td>";
-                    echo "<td>{$row['name']}</td>";
-                    echo "</tr>";
+            // require 'sql/connection.php';
+            // require 'sql/functions.php';
+            // $conn = getDBConnection("ccc_practice");
+            require '../Function/sqlFunc.php';
+
+            $qb = new QueryBuilder();
+            $qe = new QueryExecuter();
+            $query = $qb->select("ccc_category", "*");
+            $result = $qe->fetchAssoc($qe->execute($query));
+            if ($result!=null) {
+                for ($i = 0; $i < count($result); $i++) {
+                    echo "
+                    <tr>
+                        <td>{$result[$i]['cat_id']}</td>
+                        <td>{$result[$i]['name']}</td>
+                        </tr>
+                        ";
                 }
-            } else {
-                echo "<tr><td colspan='5'>No records found</td></tr>";
+
             }
-            $conn->close();
+            // $conn->close();
             ?>
         </tbody>
     </table>

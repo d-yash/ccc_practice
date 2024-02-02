@@ -11,14 +11,14 @@
             return array();
         }
     }
-    function getKeysFromPostRequest()
-    {
-        $keys = [];
-        foreach ($_POST as $key => $val) {
-            if (is_array($val)) {
-                $keys[] = $key;
-            };
-        };
-        return $keys;
-    };
+    // function getKeysFromPostRequest()
+    // {
+    //     $keys = [];
+    //     foreach ($_POST as $key => $val) {
+    //         if (is_array($val)) {
+    //             $keys[] = $key;
+    //         };
+    //     };
+    //     return $keys;
+    // };
 ?>

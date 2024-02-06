@@ -19,7 +19,17 @@ class Model_Request
                 : ''
             );
     }
-    public function isPost(){
+    public function getQueryData($key = '')
+    {
+        return ($key = '')
+            ? $_REQUEST
+            : (isset($_POST[$key])
+                ? $_POST[$key]
+                : ''
+            );
+    }
+    public function isPost()
+    {
         return ($_SERVER['REQUEST_METHOD'] === 'POST');
     }
 }

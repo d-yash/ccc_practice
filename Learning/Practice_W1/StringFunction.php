@@ -58,6 +58,8 @@ function practice($str)
     echo "String split by 2 char : ";
     print_r(str_split($str, 2));
 
+    echo "<br>";
+    print_r(str_word_count($str, 2));
     echo "<br><br>Counting total words : " . str_word_count($str) . "<br>";
     echo "Replacing portion of string with another : " . substr_replace($str, $converted_html, 20, 26) . "<br>";
     echo "Replacing portion of string with another : " . substr_replace($str, "#", 0, 26);          //will remove char from 0-25 and append the string till 25

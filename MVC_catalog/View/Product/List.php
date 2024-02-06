@@ -58,9 +58,53 @@ class View_Product_List
         return $table_head;
     }
 
-    public function toHTML($data)
+    public function toHTML()
     {
-        return $this->renderTable($data);
+        echo "<br>This is List file<br>";
+        // return $this->renderTable($data);
     }
 
 }
+
+Root Folder
+    /app/code/local
+            /Product/
+                /Model
+                /Controller
+                /View
+            /Customer
+                /Model
+                /Controller
+                /View
+        /design/frontend/tempalte/
+            /product
+                /form.phtml
+                /list.phtml
+                /grid.phtml
+            /customer/
+                /form.phtml
+                /list.phtml
+                /address/
+                    form.phtml
+
+                    
+http://myfolderrootdirectory
+    product/index/new
+    product/index/list
+    product/index/save
+    product/index/delete
+
+    customer/index/new
+    customer/index/list
+    customer/index/save
+    customer/index/delete
+
+    customer/address/new
+    customer/address/list
+    customer/address/save
+    customer/address/delete
+
+    customer/quote_address/new
+    customer/quote_address/list
+    customer/quote_address/save
+    customer/quote_address/delete

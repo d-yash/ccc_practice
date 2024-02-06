@@ -14,6 +14,17 @@ class Model_Product extends Model_Abstract{
                 echo '<script>alert("Failed to add data. Please check your input.");</script>';
             }
     }
+    public function delete(array $where_condition)
+    {
+        $query = $this->getQueryBuilder()->delete($this->tableName, $where_condition);
+        return $this->getQueryExecuter()->execute($query);
+    }
+
+    public function update(array $data, array $where_condition)
+    {
+        $query = $this->getQueryBuilder()->update($this->tableName, $data, $where_condition);
+        return $this->getQueryExecuter()->execute($query);
+    }
     public function fetch($columns, array $condition = [])
     {
         $query = $this->getQueryBuilder()->select($this->tableName, $columns, $condition = []);

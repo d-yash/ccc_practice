@@ -4,6 +4,7 @@ class Lib_Sql_QueryExecutor extends Lib_Connection
 {
     public function __construct()
     {
+        $this->connect();
     }
 
     public function fetchAssoc(mysqli_result|bool $data)
@@ -36,5 +37,14 @@ class Lib_Sql_QueryExecutor extends Lib_Connection
             $values[$row[$parameter[0]]] = $row[$parameter[1]];
         }
         return $values;
+    }
+    public function execute($query)
+    {
+        try {
+            // return $this->connect()->query($query);
+            return $this->_conn->query($query);
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
     }
 }

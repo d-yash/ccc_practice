@@ -20,12 +20,5 @@ class Lib_Connection
         return $this->_conn;
     }
 
-    public function execute($query)
-    {
-        try {
-            return $this->connect()->query($query);
-        } catch (Exception $e) {
-            print_r($e->getMessage());
-        }
-    }
+    
 }

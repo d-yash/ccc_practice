@@ -4,6 +4,7 @@ class Lib_Sql_QueryBuilder extends Lib_Connection
 {
     public function __construct()
     {
+        $this->connect();
     }
 
     public function insert(string $table_name, array $data)
@@ -24,8 +25,8 @@ class Lib_Sql_QueryBuilder extends Lib_Connection
         foreach ($condition as $key => $value) {
             $otherParameter[] = "{$key} {$value}";
         }
-        $otherParameter = join(" ", $otherParameter);
-        $columns = join(", ", $columns);
+        $otherParameter = implode(" ", $otherParameter);
+        $columns = implode(", ", $columns);
         return "SELECT {$columns} FROM {$table_name} {$otherParameter};";
     }
 

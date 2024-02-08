@@ -21,7 +21,7 @@ switch (!$request->isPost()) {
             $product_model = new Model_Product();
 
             $query = $abstract->getQueryBuilder()->select('ccc_category', ['*']);
-            $categories = $abstract->getQueryBuilder()->execute($query);
+            $categories = $abstract->getQueryExecutor()->execute($query);
             $categories = $abstract->getQueryExecutor()->fetchValues($categories, ['cat_id', 'name']);
 
             $product_list_view = new View_Product_List();
@@ -42,7 +42,7 @@ switch (!$request->isPost()) {
             break;
         } elseif ($request->getQueryData('form') == 'product') {
             $query = $abstract->getQueryBuilder()->select('ccc_category', ['*']);
-            $categories = $abstract->getQueryBuilder()->execute($query);
+            $categories = $abstract->getQueryExecutor()->execute($query);
             $categories = $abstract->getQueryExecutor()->fetchValues($categories, ['cat_id', 'name']);
 
             $product_view = new View_Product();
@@ -61,28 +61,30 @@ switch (!$request->isPost()) {
                 echo "<script>location. href='?list=product'</script>";
             }
             break;
-        } elseif ($request->getQueryData('cat_id')) {
-            $category_model = new Model_Category();
-
-            $cat_id = $request->getQueryData("cat_id");
-            $status = $category_model->delete(['cat_id' => $cat_id]);
-            if ($status) {
-                echo "<script>alert('Data deleted successfully')</script>";
-                echo "<script>location. href='?list=category'</script>";
-            }
-            break;
         }
+        //  elseif ($request->getQueryData('cat_id')) {
+        //     $category_model = new Model_Category();
+
+        //     $cat_id = $request->getQueryData("cat_id");
+        //     $status = $category_model->delete(['cat_id' => $cat_id]);
+        //     if ($status) {
+        //         echo "<script>alert('Data deleted successfully')</script>";
+        //         echo "<script>location. href='?list=category'</script>";
+        //     }
+        //     break;
+        // }
         break;
     case $request->getQueryData('action') == 'update':
-        if ($request->getQueryData('cat_id')) {
-            echo "Category Update";
-            break;
-        } elseif ($request->getQueryData('product_id')) {
+        // if ($request->getQueryData('cat_id')) {
+        //     echo "Category Update";
+        //     break;
+        // } else
+        if ($request->getQueryData('product_id')) {
             $product_model = new Model_Product();
             $product_view = new View_Product();
 
             $query = $abstract->getQueryBuilder()->select('ccc_category', ['*']);
-            $categories = $abstract->getQueryBuilder()->execute($query);
+            $categories = $abstract->getQueryExecutor()->execute($query);
             $categories = $abstract->getQueryExecutor()->fetchValues($categories, ['cat_id', 'name']);
 
             $product_id = $request->getQueryData("product_id");
@@ -138,8 +140,6 @@ switch ($request->isPost()) {
             } else {
                 echo "<script>alert('Data not updated')</script>";
             }
-            break;
-        } elseif ($request->getPostData('ccc_category')) {
             break;
         }
         break;

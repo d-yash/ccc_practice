@@ -6,12 +6,12 @@ class View_Category
     }
     private function renderForm()
     {
-        $form = "<form action='' method='POST'>";
+        $form = "<a href='?list=category' class='link'>View Category</a>";
+        $form .= "<a href='?list=product' class='link'>View Product</a>";
+        $form .= "<a href='?form=product' class='link'>Add Product</a><br><br>";
+        $form .= "<form action='' method='POST'>";
         $form .= $this->renderTextField("ccc_category[name]", "Category Name: ");
         $form .= $this->renderSubmitButton();
-        $form .= "<a href='?list=category' class='link'>View Category</a>";
-        $form .= "<a href='?list=product' class='link'>View Product</a>";
-        $form .= "<a href='?form=product' class='link'>Add Product</a>";
         return $form;
     }
     private function renderTextField($name, $label)

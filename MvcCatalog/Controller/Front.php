@@ -10,6 +10,6 @@ class Controller_Front{
 
         // echo $className;
         $layout = new $className();
-        $layout->toHtml();
+        print_r($layout->toHtml());
     }
 }

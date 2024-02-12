@@ -2,14 +2,12 @@
 
 class Core_Controller_Front{
     public function init(){
-        $requestModel = new Core_Model_Request();
-        // echo $requestModel->getModuleName();
-        // echo $requestModel->getControllerName();
+        $requestModel = Mage::getModel('core/request');
         $actionName = $requestModel->getActionName();
-        $actionName .= "Action";
-        
-        $className = $requestModel->getFullControllerClass();
-        $Layout = new $className();
+        $actionName .= 'Action';
+
+        $fullClassName = $requestModel->getFullControllerClass();
+        $Layout = new $fullClassName();
         $Layout->$actionName();
     }
 }

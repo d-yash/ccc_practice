@@ -24,19 +24,16 @@ class Mage
     }
     public static function getSingleton($className)
     {
-        
     }
     public static function register($key, $value)
     {
-
     }
     public static function registry($key)
     {
-
     }
     public static function getBaseDir($subDir = null)
     {
-        if($subDir){
+        if ($subDir) {
             return self::$baseDir . '/' . $subDir;
         }
         return self::$baseDir;

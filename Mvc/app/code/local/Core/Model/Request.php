@@ -9,7 +9,7 @@ class Core_Model_Request
         $uri = $this->getRequestUri();
         $uri = array_filter(explode("/", $uri));
         $this->_moduleName = isset($uri[0]) ? $uri[0] : 'page';
-        $this->_controllerName =  isset($uri[1]) ? $uri[1] : 'index';
+        $this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
         $this->_actionName =  isset($uri[2]) ? $uri[2] : 'index';
     }
     public function getParams($key = '')

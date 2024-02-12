@@ -9,13 +9,13 @@ class Core_Block_Layout extends Core_Block_Template
     }
     public function prepareChildren()
     {
-
     }
     public function createBlock($className)
     {
         Mage::getBlock('page/header');
     }
-    public function getRequest(){
+    public function getRequest()
+    {
         return Mage::getModel('core/request');
     }
 }

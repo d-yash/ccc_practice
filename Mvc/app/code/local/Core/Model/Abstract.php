@@ -1,6 +1,6 @@
 <?php
 
-class Core_Model_Db_Abstract
+class Core_Model_Abstract
 {
     protected $data = [];
     protected $resourceClass = '';
@@ -9,6 +9,7 @@ class Core_Model_Db_Abstract
     protected $collection = null;
     public function __construct()
     {
+
     }
     public function setResourceClass($resourceClass)
     {
@@ -24,6 +25,10 @@ class Core_Model_Db_Abstract
     }
     public function getResource()
     {
+        $modelClass = get_class($this);
+        // echo $modelClass;
+        $modelClass = str_replace('_Model_', '_Model_Resource_', $modelClass);        
+        return new $modelClass();
     }
     public function getCollection()
     {
@@ -60,6 +65,7 @@ class Core_Model_Db_Abstract
     }
     public function load($id, $column = null)
     {
+        print_r($this->getResource());
     }
     public function delete()
     {

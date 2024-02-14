@@ -4,7 +4,7 @@ class Page_Block_Head extends Core_Block_Template{
     protected $_js = array();
     protected $_css = array();
     public function __construct(){
-        $this->setTemplate('Page/head.phtml');
+        $this->setTemplate('page/head.phtml');
     }
     public function addJs($file){
         $this->_js[] = $file;

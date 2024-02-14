@@ -26,7 +26,6 @@ class Core_Model_Abstract
     public function getResource()
     {
         $modelClass = get_class($this);
-        // echo $modelClass;
         $modelClass = str_replace('_Model_', '_Model_Resource_', $modelClass);        
         return new $modelClass();
     }

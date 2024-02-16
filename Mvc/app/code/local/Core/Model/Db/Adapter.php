@@ -19,9 +19,6 @@ class Core_Model_Db_Adapter
                 $this->config['dbname'],
             );
         }
-        // if (!$this->connect) {
-        //     die("Connection error: " . mysqli_connect_error());
-        // }
     }
     public function fetchAll($query)
     {
@@ -34,6 +31,14 @@ class Core_Model_Db_Adapter
     }
     public function fetchRow($query)
     {
+        $row=[];
+        $this->connect();
+        $query = $query . " LIMIT 1";
+        $result = $this->connect->query($query);
+        while($_row = mysqli_fetch_assoc($result)){
+            $row = $_row;
+        }
+        return $row;
     }
     public function insert($query)
     {

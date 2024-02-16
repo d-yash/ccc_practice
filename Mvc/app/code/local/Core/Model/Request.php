@@ -48,9 +48,11 @@ class Core_Model_Request
     }
     public function getRequestUri()
     {
-        $requst = $_SERVER["REQUEST_URI"];
-        $uri = str_replace("/Practice/Mvc/", "", $requst);
-        $uri = stristr($uri, '?', True);
+        $request = $_SERVER["REQUEST_URI"];
+        $uri = str_replace("/Practice/Mvc/", "", $request);
+        if(str_contains($uri,"?")) {
+            $uri = stristr($uri, '?', True);
+        }
         return $uri;
     }
     public function getModuleName()

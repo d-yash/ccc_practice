@@ -1,4 +1,4 @@
 git add .
-git commit -m "msg"
+git commit -m "message"
 Home : git push github Practice
 Office : git push origin Practice

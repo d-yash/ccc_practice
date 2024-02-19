@@ -1,5 +1,5 @@
 <?php
-class Product_Model_Resource_Product extends Core_Block_Abstract
+class Catalog_Model_Resource_Product extends Core_Block_Abstract
 {
     protected $_tableName = "";
     protected $_primaryKey = "";

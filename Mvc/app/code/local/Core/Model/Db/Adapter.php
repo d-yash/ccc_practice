@@ -19,6 +19,7 @@ class Core_Model_Db_Adapter
                 $this->config['dbname'],
             );
         }
+        return $this->connect;
     }
     public function fetchAll($query)
     {
@@ -42,6 +43,14 @@ class Core_Model_Db_Adapter
     }
     public function insert($query)
     {
+        $result = mysqli_query($this->connect(), $query);
+        if($result){
+            echo '<script>alert("Data inserted successfully")</script>';
+            return mysqli_insert_id($this->connect);
+        }else{
+            echo '<script>alert("Data not inserted")</script>';
+        }
+
     }
     public function update($query)
     {

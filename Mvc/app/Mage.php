@@ -38,4 +38,10 @@ class Mage
         }
         return self::$baseDir;
     }
+    public static function getBaseUrl($subUrl){
+        if ($subUrl) {
+            return 'http://localhost/Practice/Mvc' . '/' . $subUrl;
+        }
+        return 'http://localhost/Practice/Mvc';
+    }
 }

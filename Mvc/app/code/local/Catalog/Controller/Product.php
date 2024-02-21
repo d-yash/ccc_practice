@@ -2,7 +2,7 @@
 
 class Catalog_Controller_Product extends Core_Controller_Front_Action
 {
-    public function newAction()
+    public function formAction()
     {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');

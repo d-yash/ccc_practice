@@ -1,144 +1,68 @@
-    <style>
-        body,
-        h2,
-        p,
-        form {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        .form {
-            margin: 50px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .row {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        textarea,
-        input[type="file"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #44bd32;
-            color: #fff;
-            padding: 10px 15px;
-            cursor: pointer;
-            border: none;
-            display: block;
-            margin: 0 auto;
-            font-weight: bold;
-            font-size: medium;
-            border-radius: 5px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #009432;
-        }
-    </style>
-
-    <div class="form" style="border:1px solid black; width:35%; padding: 15px">
-        <h2>Product Form</h2><br>
-        <form method="POST" action="<?php echo $this->getUrl('catalog/product/save') ?>">
-            <div class="row">
-                <input type="hidden" name="catalog_product[product_id]">
-            </div>
-            <div class="row">
-                <label for="sku">SKU : </label>
-                <input type="text" name="catalog_product[sku]" id="sku">
-            </div>
-            <div class="row">
-                <label for="name">Name : </label>
-                <input type="text" name="catalog_product[name]" id="name">
-            </div>
-
-            <div class="row">
-                <label for="color">Color : </label>
-                <input type="text" name="catalog_product[color]" id="color">
-            </div>
-
-            <div class="row">
-                <label for="size">Size : </label>
-                <input type="text" name="catalog_product[size]" id="size">
-            </div>
-
-            <div class="row">
-                <label for="description">Description :
-                    <textarea name="catalog_product[description]" id="description" cols="30" rows="10"></textarea>
-                </label>
-            </div>
-
-            <div class="row">
-                <label for="image_link">Image Link : </label>
-                <input type="file" name="catalog_product[image_link]" id="image_link">
-            </div>
-
-            <div class="row">
-                <label for="link">Link : </label>
-                <input type="file" name="catalog_product[link]" id="link">
-            </div>
-
-            <div class="row">
-                <label for="price">Price : </label>
-                <input type="number" name="catalog_product[price]" id="price">
-            </div>
-
-            <div class="row">
-                <label for="mfr_cost">MFR Cost</label>
-                <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost">
-            </div>
-
-            <div class="row">
-                <label for="shipping_cost">Shipping Cost</label>
-                <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost">
-            </div>
-
-            <div class="row">
-                <label for="total_cost">Total Cost</label>
-                <input type="number" name="catalog_product[total_cost]" id="total_cost">
-            </div>
-
-            <div class="row">
-                <label for="margin_percentage">Margin Percentage : </label>
-                <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage">
-            </div>
-
-            <div class="row">
-                <label for="min_price">Min Price : </label>
-                <input type="number" name="catalog_product[min_price]" id="min_price">
-            </div>
-
-            <div class="row">
-                <label for="status">Status : </label>
-                <input type="text" name="catalog_product[status]" id="status">
-            </div>
-
-            <div class="row" id="sbtButton">
-                <input name="submit[submit]" type="submit" value="Submit">
-            </div>
-        </form>
-    </div>
+<div class="form" style="border:1px solid black; width:35%; padding: 15px">
+    <h2>Product Form</h2><br>
+    <form method="POST" action="<?php echo $this->getUrl('catalog/product/save') ?>">
+        <div class="row">
+            <input type="hidden" name="catalog_product[product_id]">
+        </div>
+        <div class="row">
+            <label for="sku">SKU : </label>
+            <input type="text" name="catalog_product[sku]" id="sku">
+        </div>
+        <div class="row">
+            <label for="name">Name : </label>
+            <input type="text" name="catalog_product[name]" id="name">
+        </div>
+        <div class="row">
+            <label for="color">Color : </label>
+            <input type="text" name="catalog_product[color]" id="color">
+        </div>
+        <div class="row">
+            <label for="size">Size : </label>
+            <input type="text" name="catalog_product[size]" id="size">
+        </div>
+        <div class="row">
+            <label for="description">Description :
+                <textarea name="catalog_product[description]" id="description" cols="30" rows="10"></textarea>
+            </label>
+        </div>
+        <div class="row">
+            <label for="image_link">Image Link : </label>
+            <input type="file" name="catalog_product[image_link]" id="image_link">
+        </div>
+        <div class="row">
+            <label for="link">Link : </label>
+            <input type="file" name="catalog_product[link]" id="link">
+        </div>
+        <div class="row">
+            <label for="price">Price : </label>
+            <input type="number" name="catalog_product[price]" id="price">
+        </div>
+        <div class="row">
+            <label for="mfr_cost">MFR Cost</label>
+            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost">
+        </div>
+        <div class="row">
+            <label for="shipping_cost">Shipping Cost</label>
+            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost">
+        </div>
+        <div class="row">
+            <label for="total_cost">Total Cost</label>
+            <input type="number" name="catalog_product[total_cost]" id="total_cost">
+        </div>
+        <div class="row">
+            <label for="margin_percentage">Margin Percentage : </label>
+            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage">
+        </div>
+        <div class="row">
+            <label for="min_price">Min Price : </label>
+            <input type="number" name="catalog_product[min_price]" id="min_price">
+        </div>
+        <div class="row">
+            <label for="status">Status : </label>
+            <input type="text" name="catalog_product[status]" id="status">
+        </div>
+        <div class="row" id="sbtButton">
+            <input name="submit[submit]" type="submit" value="Submit">
+        </div>
+    </form>
+</div>

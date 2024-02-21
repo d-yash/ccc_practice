@@ -3,6 +3,7 @@
 class Mage
 {
     private static $baseDir = 'C:/xampp/htdocs/Practice/Mvc';
+    private static $baseUrl = 'http://localhost/Practice/Mvc';
     public static function  init()
     {
         // $request_model = new App_Code_Local_Core_Controller_Model_Request();
@@ -40,8 +41,8 @@ class Mage
     }
     public static function getBaseUrl($subUrl){
         if ($subUrl) {
-            return 'http://localhost/Practice/Mvc' . '/' . $subUrl;
+            return self::$baseUrl . '/' . $subUrl;
         }
-        return 'http://localhost/Practice/Mvc';
+        return self::$baseUrl;
     }
 }

@@ -78,6 +78,8 @@ class Core_Model_Abstract
     }
     public function addData($key, $value)
     {
+        $this->_data[$key] = $value;
+        return $this;
     }
     public function removeData($key = null)
     {
@@ -85,6 +87,10 @@ class Core_Model_Abstract
     public function save()
     {
         $this->getResource()->save($this);
+        return $this;
+    }
+    public function update(){
+        $this->getResource()->update($this);
         return $this;
     }
     public function load($id, $column = null)

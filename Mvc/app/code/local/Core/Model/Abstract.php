@@ -23,6 +23,7 @@ class Core_Model_Abstract
     public function setId($id)
     {
         $this->_data[$this->getResource()->getPrimaryKey()] = $id;
+        return $this;
     }
     public function getId()
     {
@@ -93,5 +94,7 @@ class Core_Model_Abstract
     }
     public function delete()
     {
+        $this->getResource()->delete($this);
+        return $this;
     }
 }

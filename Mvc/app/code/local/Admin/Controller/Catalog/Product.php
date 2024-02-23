@@ -13,27 +13,16 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $this->setFormCss();
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $form = $layout->createBlock('catalog/admin_product');
+        $form = $layout->createBlock('catalog/admin_product_form');
         $child->addChild('form', $form);
         $layout->toHtml();
     }
     public function saveAction()
     {
-        $productId = $this->getRequest()->getParams('id');
-        if ($productId) {
-            $productModel = Mage::getModel('catalog/product')
-                ->setId($productId);
-            $productId ? $productModel->load($productModel->getId()) : '';
-            $productModel->addData('sku', 'sku55')->addData('name', 'fruits');
-            Mage::getModel('catalog/product')
-                ->setData($productModel->getData())
-                ->update();
-        } else {
-            $productModel = $this->getRequest()->getParams('catalog_product');
-            Mage::getModel('catalog/product')
-                ->setData($productModel)
-                ->save();
-        }
+        $productModel = $this->getRequest()->getParams('catalog_product');
+        Mage::getModel('catalog/product')
+            ->setData($productModel)
+            ->save();
     }
     public function deleteAction()
     {

@@ -19,26 +19,25 @@ class Core_Model_Resource_Abstract
         $sql = "select * FROM {$this->_tableName} WHERE {$this->_primaryKey}=$id";
         return $this->getAdapter()->fetchRow($sql);
     }
+
     public function save(Core_Model_Abstract $abstract)
-    {
+    {  
         $data = $abstract->getData();
-        if (isset($data[$this->getPrimaryKey()])) {
-            unset($data[$this->getPrimaryKey()]);
+        if(isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()]))
+        {
+            $sql = $this->updateSql(
+                $this->getTableName(),
+                $data, 
+                [$this->getPrimaryKey()=>$abstract->getId()]
+            );
+            $this->getAdapter()->update($sql);
+        } else {
+            $sql = $this->insertSql($this->getTableName(),$data);
+            $id =  $this->getAdapter()->insert($sql);
+            $abstract->setId($id);
         }
-        $sql = $this->insertSql($this->getTableName(), $data);
-        $id = $this->getAdapter()->insert($sql);
-        echo "<pre>";
-        $abstract->setId($id);
-        echo "<pre>";
-        print_r($abstract->getData());
     }
-    public function update(Core_Model_Abstract $abstract){
-        $data = $abstract->getData();
-        echo "<pre>";
-        print_r($abstract);
-        $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey()=>$abstract->getId()]);
-        $this->getAdapter()->update($sql);
-    }
+
     public function updateSql(string $tablename, array $data, array $where)
     {
         $columns = $where_cond = [];

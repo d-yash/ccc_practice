@@ -10,15 +10,15 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action{
         $this->setFormCss();
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $form = $layout->createBlock('catalog/admin_category');
+        $form = $layout->createBlock('catalog/admin_category_form');
         $child->addChild('form', $form);
         $layout->toHtml(); 
     }
     public function saveAction()
     {
-        $data = $this->getRequest()->getParams('catalog_category');
+        $categoryData = $this->getRequest()->getParams('catalog_category');
         Mage::getModel('catalog/category')
-            ->setData($data)
+            ->setData($categoryData)
             ->save();
     }
     public function deleteAction()

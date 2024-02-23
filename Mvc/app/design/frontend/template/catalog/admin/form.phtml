@@ -1,20 +1,21 @@
+<?php $data = $this->getProduct()?>
 <div class="form" style="border:1px solid black; width:35%; padding: 15px">
     <h2>Product Form</h2><br>
     <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>">
         <div class="row">
-            <input type="hidden" name="catalog_product[product_id]">
+            <input type="hidden" value="<?php echo $data->getProductId()?>" name="catalog_product[product_id]">
         </div>
         <div class="row">
             <label for="sku">SKU : </label>
-            <input type="text" name="catalog_product[sku]" id="sku">
+            <input type="text" value="<?php echo $data->getSku()?>" name="catalog_product[sku]" id="sku">
         </div>
         <div class="row">
             <label for="name">Name : </label>
-            <input type="text" name="catalog_product[name]" id="name">
+            <input type="text" value="<?php echo $data->getName()?>" name="catalog_product[name]" id="name">
         </div>
         <div class="row">
             <label for="color">Color : </label>
-            <input type="text" name="catalog_product[color]" id="color">
+            <input type="text" value="<?php echo $data->getColor()?>" name="catalog_product[color]" id="color">
         </div>
         <div class="row">
             <label for="size">Size : </label>

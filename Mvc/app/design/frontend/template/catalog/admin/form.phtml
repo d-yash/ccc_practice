@@ -35,6 +35,10 @@
             <input type="file" value="<?php echo $data->getLink()?>" name="catalog_product[link]" id="link">
         </div>
         <div class="row">
+            <label for="category">Category : </label>
+            <input type="text" value="<?php echo $data->getCategoryId()?>" name="catalog_product[category_id]" id="link">
+        </div>
+        <div class="row">
             <label for="price">Price : </label>
             <input type="number" value="<?php echo $data->getPrice()?>" name="catalog_product[price]" id="price">
         </div>

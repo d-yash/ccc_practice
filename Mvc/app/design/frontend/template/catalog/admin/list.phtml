@@ -1,22 +1,14 @@
-<div class="list">
-    <h2>Product List</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>SKU</th>
-                <th>Color</th>
-                <th colspan="2">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Abc</td>
-                <td>Xyz</td>
-                <td>Hello</td>
-                <td><a href="#">Delete</a></td>
-                <td><a href="#">Update</a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<?php
+echo "<pre>";
+$productCollection = Mage::getModel("catalog/product")->getCollection();
+// $productCollection->addFieldToFilter('name', 'abc');
+// $productCollection->addFieldToFilter('product_id', ['in'=>[52,53,54]]);
+// $productCollection->addFieldToFilter('sku', ['like'=>'%abc']);
+// $productCollection->getData();
+foreach ($productCollection->getData() as $product) {
+    print_r($product);
+    echo $product->getCategoryId();
+    // echo $product->getStatus();
+    // echo '' . $product->getProductId();
+    // echo ''. $product->delete();
+}

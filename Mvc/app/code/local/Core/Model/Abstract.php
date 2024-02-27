@@ -27,7 +27,9 @@ class Core_Model_Abstract
     }
     public function getId()
     {
-        return $this->_data[$this->getResource()->getPrimaryKey()];
+        return isset($this->_data[$this->getResource()->getPrimaryKey()])
+            ? $this->_data[$this->getResource()->getPrimaryKey()]
+            : '';
     }
     public function getResource()
     {
@@ -39,6 +41,7 @@ class Core_Model_Abstract
     {
         $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
+        $collection->setModel(get_class($this));
         $collection->select();
         return $collection;
     }
@@ -107,5 +110,8 @@ class Core_Model_Abstract
             $this->getResource()->delete($this);
         }
         return $this;
+    }
+    public function getStatus(){
+        return $productModel = Mage::getModel('catalog/Product')->getStatus();
     }
 }

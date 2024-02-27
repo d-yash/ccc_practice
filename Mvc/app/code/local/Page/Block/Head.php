@@ -1,8 +1,8 @@
 <?php
 
 class Page_Block_Head extends Core_Block_Template{
-    protected $_js = array();
-    protected $_css = array();
+    protected $_js = [];
+    protected $_css = [];
     public function __construct(){
         $this->setTemplate('page/head.phtml');
     }
@@ -24,7 +24,7 @@ class Page_Block_Head extends Core_Block_Template{
         return Mage::getBaseUrl('skin/css/' . $_css);
     }
     public function getJsUrl($_js){
-        return Mage::getBaseUrl('/skin/js/'. $_js);
+        return Mage::getBaseUrl('skin/js/'. $_js);
     }
 
 }

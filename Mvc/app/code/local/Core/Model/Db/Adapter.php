@@ -11,7 +11,7 @@ class Core_Model_Db_Adapter
     public $connect = null;
     public function connect()
     {
-        if(is_null($this->connect)){
+        if (is_null($this->connect)) {
             $this->connect = mysqli_connect(
                 $this->config['hostname'],
                 $this->config['user'],
@@ -23,9 +23,9 @@ class Core_Model_Db_Adapter
     }
     public function fetchAll($query)
     {
-        $row=[];
+        $row = [];
         $result = $this->connect()->query($query);
-        while($_row = mysqli_fetch_assoc($result)){
+        while ($_row = mysqli_fetch_assoc($result)) {
             $row[] = $_row;
         }
         return $row;
@@ -38,11 +38,11 @@ class Core_Model_Db_Adapter
     }
     public function fetchRow($query)
     {
-        $row=[];
+        $row = [];
         $this->connect();
         $query = $query . " LIMIT 1";
         $result = $this->connect->query($query);
-        while($_row = mysqli_fetch_assoc($result)){
+        while ($_row = mysqli_fetch_assoc($result)) {
             $row = $_row;
         }
         return $row;
@@ -50,32 +50,20 @@ class Core_Model_Db_Adapter
     public function insert($query)
     {
         $result = mysqli_query($this->connect(), $query);
-        if($result){
-            echo '<script>alert("Data inserted successfully")</script>';
-            return mysqli_insert_id($this->connect);
-        }else{
-            echo '<script>alert("Data not inserted")</script>';
-        }
+        return mysqli_insert_id($this->connect);
+        // if($result){
+        //     echo '<script>alert("Data inserted successfully")</script>';
+        // }else{
+        //     echo '<script>alert("Data not inserted")</script>';
+        // }
     }
     public function update($query)
     {
-        $result = mysqli_query($this->connect(), $query);
-        if($result){
-            echo '<script>alert("Data updated successfully")</script>';
-            // return mysqli_insert_id($this->connect);
-        }else{
-            echo '<script>alert("Data not updated")</script>';
-        }
-        
+        return mysqli_query($this->connect(), $query);
     }
     public function delete($query)
     {
         $result = mysqli_query($this->connect(), $query);
-        if($result){
-            echo '<script>alert("Data deleted successfully")</script>';
-        }else{
-            echo '<script>alert("Data not deleted")</script>';
-        }
     }
     public function query($query)
     {

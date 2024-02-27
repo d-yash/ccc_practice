@@ -1,0 +1,81 @@
+/* Reset some default browser styles */
+body, h2, table, th, td {
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  h2 {
+    margin-top: 15px;
+    font-size: 28px; /* Increase the font size */
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Convert text to uppercase */
+    font-weight: bold;
+  }
+  
+  table {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+  }
+  
+  th, td {
+    width: 0;
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+  }
+  td{
+    text-align: left;
+  }
+  th {
+    background-color: #333;
+    color: #ffd700;
+    font-size: 16px;
+    text-align: center;
+  }
+  .link-container{
+    width: 12%;
+  }
+  .edit-link{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: #6ac8dd;
+    border-radius: 8px;
+    color: white;
+  }
+  .del-link{
+    padding-top: 3px;
+    border-radius: 8px ;
+    padding-bottom: 3px;
+    color: white;
+    background-color: #eb2f06;
+  }
+  tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Responsive Styles for Small Screens */
+  @media screen and (max-width: 600px) {
+    table {
+      overflow-x: auto;
+    }
+  
+    th, td {
+      white-space: nowrap;
+    }
+  }
+  

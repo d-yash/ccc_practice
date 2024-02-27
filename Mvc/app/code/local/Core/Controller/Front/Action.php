@@ -20,4 +20,5 @@ class Core_Controller_Front_Action
     {
         return Mage::getModel('core/request');
     }
+    
 }

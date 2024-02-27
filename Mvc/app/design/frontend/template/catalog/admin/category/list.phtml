@@ -1,0 +1,34 @@
+<?php
+$categoryCollection = Mage::getModel("catalog/category")->getCollection();
+?>
+
+
+
+<h2>Category List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($categoryCollection->getData() as $_category) : ?>
+            <tr>
+                <td>
+                    <?php echo $_category->getCategoryName() ?>
+                </td>
+                <td>
+                    <?php echo $_category->getStatus() ?>
+                </td>
+                <td class="link-container">
+                    <a class="edit-link" href="<?php echo $this->getUrl("admin/catalog_category/form?id={$_category->getId()}") ?>">Update</a>
+                </td>
+                <td class="link-container">
+                    <a class="del-link" href="<?php echo $this->getUrl("admin/catalog_category/delete?id={$_category->getId()}") ?>">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -4,12 +4,9 @@ class Mage
 {
     private static $baseDir = 'C:/xampp/htdocs/Practice/Mvc';
     private static $baseUrl = 'http://localhost/Practice/Mvc';
+    private static $_singleTon = [];
     public static function  init()
     {
-        // $request_model = new App_Code_Local_Core_Controller_Model_Request();
-        // $request = Mage::getModel('core/request');
-        // echo  $request_uri = $request_model->getrequestUri();
-
         $frontController = new Core_Controller_Front();
         $frontController->init();
     }
@@ -25,6 +22,12 @@ class Mage
     }
     public static function getSingleton($className)
     {
+
+        if (isset(self::$_singleTon[$className])) {
+            return  self::$_singleTon[$className];
+        } else {
+            return self::$_singleTon[$className] = self::getModel($className);
+        }
     }
     public static function register($key, $value)
     {
@@ -39,7 +42,8 @@ class Mage
         }
         return self::$baseDir;
     }
-    public static function getBaseUrl($subUrl){
+    public static function getBaseUrl($subUrl)
+    {
         if ($subUrl) {
             return self::$baseUrl . '/' . $subUrl;
         }

@@ -1,45 +1,42 @@
 <?php
 
 class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action{
-    public function setFormCss()
+    protected $_allowedAction = [];
+    public function formAction()
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('form.css');
-    }
-    public function setListCss()
-    {
-        $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addCss('list.css');
-    }
-    public function formAction(){
-        $this->setFormCss();
-        $layout = $this->getLayout();
+            ->addCss('category/form.css')
+            ->addJs('category/form.js');
         $child = $layout->getChild('content');
-        $form = $layout->createBlock('catalog/admin_category_form');
-        $child->addChild('form', $form);
-        $layout->toHtml(); 
+
+        $categoryForm = $layout->createBlock('catalog/admin_category_form');
+        $child->addChild('form', $categoryForm);
+        $layout->toHtml();
     }
     public function saveAction()
     {
-        $categoryData = $this->getRequest()->getParams('catalog_category');
+        $data = $this->getRequest()->getParams('catalog_category');
         Mage::getModel('catalog/category')
-            ->setData($categoryData)
+            ->setData($data)
             ->save();
     }
     public function deleteAction()
     {
+        $categoryId = $this->getRequest()->getParams('category_id');
         Mage::getModel('catalog/category')
-            ->setId($this->getRequest()->getParams('id'))
+            ->setId($categoryId)
             ->delete();
     }
-    public function listAction(){
-        $this->setListCss();
+    public function listAction()
+    {
         $layout = $this->getLayout();
+        $layout->getChild('head')
+            ->addCss('category/list.css');
         $child = $layout->getChild('content');
-        
+
         $categoryList = $layout->createBlock('catalog/admin_category_list');
+
         $child->addChild('list', $categoryList);
         $layout->toHtml();
     }

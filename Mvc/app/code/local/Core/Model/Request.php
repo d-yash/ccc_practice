@@ -12,6 +12,22 @@ class Core_Model_Request
         $this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
         $this->_actionName =  isset($uri[2]) ? $uri[2] : 'index';
     }
+    public function getModuleName()
+    {
+        return $this->_moduleName;
+    }
+    public function getControllerName()
+    {
+        return $this->_controllerName;
+    }
+    public function getActionName()
+    {
+        return $this->_actionName;
+    }
+    public function getFullControllerClass()
+    {
+        return ucfirst($this->_moduleName) . "_Controller_" . ucfirst($this->_controllerName);
+    }
     public function getParams($key = '', $arg=null)
     {
         return ($key == '')
@@ -39,13 +55,7 @@ class Core_Model_Request
                 : ''
             );
     }
-    public function isPost()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            return true;
-        }
-        return false;
-    }
+    
     public function getRequestUri()
     {
         $request = $_SERVER["REQUEST_URI"];
@@ -55,20 +65,15 @@ class Core_Model_Request
         }
         return $uri;
     }
-    public function getModuleName()
+    public function getFileData(string $key = '')
     {
-        return $this->_moduleName;
+        return $key == '' ? $_FILES : (isset($_FILES[$key]) ? $_FILES[$key] : '');
     }
-    public function getControllerName()
+    public function isPost()
     {
-        return $this->_controllerName;
-    }
-    public function getActionName()
-    {
-        return $this->_actionName;
-    }
-    public function getFullControllerClass()
-    {
-        return ucfirst($this->_moduleName) . "_Controller_" . ucfirst($this->_controllerName);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            return true;
+        }
+        return false;
     }
 }

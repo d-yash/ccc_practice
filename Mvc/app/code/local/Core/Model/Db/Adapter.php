@@ -40,7 +40,6 @@ class Core_Model_Db_Adapter
     {
         $row = [];
         $this->connect();
-        $query = $query . " LIMIT 1";
         $result = $this->connect->query($query);
         while ($_row = mysqli_fetch_assoc($result)) {
             $row = $_row;
@@ -50,12 +49,10 @@ class Core_Model_Db_Adapter
     public function insert($query)
     {
         $result = mysqli_query($this->connect(), $query);
-        return mysqli_insert_id($this->connect);
-        // if($result){
-        //     echo '<script>alert("Data inserted successfully")</script>';
-        // }else{
-        //     echo '<script>alert("Data not inserted")</script>';
-        // }
+        while($result){
+            return mysqli_insert_id($this->connect);
+        }
+        return False;
     }
     public function update($query)
     {
@@ -63,7 +60,7 @@ class Core_Model_Db_Adapter
     }
     public function delete($query)
     {
-        $result = mysqli_query($this->connect(), $query);
+        return mysqli_query($this->connect(), $query);
     }
     public function query($query)
     {

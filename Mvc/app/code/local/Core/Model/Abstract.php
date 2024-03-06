@@ -5,20 +5,25 @@ class Core_Model_Abstract
     protected $_data = [];
     protected $_resourceClass = '';
     protected $_collectionClass = '';
+    protected $_modelClass = '';
     protected $_resource = null;
     protected $_collection = null;
     public function __construct()
     {
         $this->init();
     }
-    // public function init(){
+    public function init(){
 
-    // }
+    }
     public function setResourceClass($resourceClass)
     {
+        $this->_resourceClass = $resourceClass;
+        return $this;
     }
     public function setCollectionClass($collectionClass)
     {
+        $this->_collectionClass = $collectionClass;     
+        return $this;
     }
     public function setId($id)
     {
@@ -33,15 +38,13 @@ class Core_Model_Abstract
     }
     public function getResource()
     {
-        // $modelClass = get_class($this);
-        // $modelClass = str_replace('_Model_', '_Model_Resource_', $modelClass);        
         return new $this->_resourceClass();
     }
     public function getCollection()
     {
         $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
-        $collection->setModel(get_class($this));
+        $collection->setModelClass(get_class($this));
         $collection->select();
         return $collection;
     }
@@ -92,13 +95,15 @@ class Core_Model_Abstract
     }
     public function save()
     {
+        $this->_beforeSave();
         $this->getResource()->save($this);
+        $this->_afterSave();
         return $this;
     }
-    public function update(){
-        $this->getResource()->update($this);
-        return $this;
-    }
+    // public function update(){
+    //     $this->getResource()->update($this);
+    //     return $this;
+    // }
     public function load($id, $column = null)
     {
         $this->_data = $this->getResource()->load($id, $column);
@@ -110,8 +115,5 @@ class Core_Model_Abstract
             $this->getResource()->delete($this);
         }
         return $this;
-    }
-    public function getStatus(){
-        return $productModel = Mage::getModel('catalog/Product')->getStatus();
     }
 }

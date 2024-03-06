@@ -1,55 +1,43 @@
 <?php
 
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
-    public function setFormCss()
-    {
-        $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addCss('form.css');
-    }
-    public function setFormJs()
-    {
-        $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addJs('form.js');
-    }
-    public function setListCss()
-    {
-        $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addCss('list.css');
-    }
+    protected $_allowedAction = [];
     public function formAction()
     {
-        $this->setFormCss();
-        $this->setFormJs();
         $layout = $this->getLayout();
+        $layout->getChild('head')
+            ->addCss('product/form.css')
+            ->addJs('product/form.js');
         $child = $layout->getChild('content');
-        $form = $layout->createBlock('catalog/admin_product_form');
-        $child->addChild('form', $form);
+
+        $productForm = $layout->createBlock('catalog/admin_product_form');
+
+        $child->addChild('form', $productForm);
         $layout->toHtml();
     }
     public function saveAction()
     {
-        $productModel = $this->getRequest()->getParams('catalog_product');
+        $data = $this->getRequest()->getParams('catalog_product');
         Mage::getModel('catalog/product')
-            ->setData($productModel)
+            ->setData($data)
             ->save();
     }
     public function deleteAction()
     {
-        $productId = $this->getRequest()->getParams('id');
-        Mage::getModel('catalog/product')->load($productId)
-            ->delete();
+        $productId = $this->getRequest()->getParams('product_id');
+        Mage::getModel('catalog/product')
+            ->load($productId)->delete();
     }
     public function listAction()
     {
-        $this->setListCss();
         $layout = $this->getLayout();
+        $layout->getChild('head')
+            ->addCss('product/list.css');
         $child = $layout->getChild('content');
 
         $productList = $layout->createBlock('catalog/admin_product_list');
+
         $child->addChild('list', $productList);
         $layout->toHtml();
     }

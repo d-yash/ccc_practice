@@ -73,17 +73,17 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             ->get('logged_in_customer_id');
 
         if ($customerId) {
-            $customerData = Mage::getModel('customer/customer')
-                ->load($customerId);
+            // $customerData = Mage::getModel('customer/customer')
+            //     ->load($customerId);
 
             $layout = $this->getLayout();
             $content = $layout->getChild("content");
 
-            // $dashboard = Mage::getBlock('customer/account_dashboard');
-            // $content->addChild('form', $dashboard);
-            echo "<pre>";
-            print_r($customerData);
-            echo "</pre>";
+            $layout->getChild('head')
+                ->addCss('product/view.css');
+            
+                $dashboard = Mage::getBlock('customer/account_dashboard');
+            $content->addChild('form', $dashboard);
             $layout->toHtml();
         }
     }

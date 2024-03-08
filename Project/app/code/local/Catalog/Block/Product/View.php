@@ -6,9 +6,14 @@ class Catalog_Block_Product_View extends Core_Block_Template
     {
         $this->setTemplate('catalog/product/view.phtml');
     }
-    public function getSingleProduct()
+    public function getItem()
     {
-        return Mage::getModel('catalog/product')
-            ->load($this->getRequest()->getParams('product_id'));
+        $id = $this->getRequest()->getParams('product_id');
+        if($id){
+            $list =  Mage::getModel("catalog/product")->getCollection()->addFieldToFilter('product_id',$id);
+            return $list->getData();
+        }
+        $list =  Mage::getModel("catalog/product")->getCollection();
+        return $list->getData();
     }
 }

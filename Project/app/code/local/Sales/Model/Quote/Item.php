@@ -41,6 +41,7 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
         $this->addData('product_id', $productId)
             ->addData('quote_id', $quote->getId())
             ->addData('qty', $qty);
+
         $this->save();
     }
     public function deleteItem(Sales_Model_Quote $quote, $itemId)

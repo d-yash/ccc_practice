@@ -15,7 +15,6 @@ class loancalculator_Controller_Calculator extends Core_Controller_Front_Action
     public function saveAction()
     {
         $data = $this->getRequest()->getParams('loan_calculator');
-        // $this->calculateResult();
         Mage::getModel('loancalculator/calculator')->addData('session_id', 1)
         ->setData($data)
         ->save();
@@ -24,9 +23,6 @@ class loancalculator_Controller_Calculator extends Core_Controller_Front_Action
         echo "<pre>";
         $layout = $this->getLayout();
         $loanData = Mage::getModel('loancalculator/calculator')->getCollection()->getData();
-        
-        // $bankData = $layout->createBlock('loancalculator/bank')->getBankRateById($loanData->getBankCode());
-        // $p = $loanData->getLoanAmount();
     }
     // public function deleteAction()
     // {
@@ -34,16 +30,16 @@ class loancalculator_Controller_Calculator extends Core_Controller_Front_Action
     //     Mage::getModel('catalog/product')
     //         ->load($productId)->delete();
     // }
-    // public function listAction()
-    // {
-    //     $layout = $this->getLayout();
-    //     $layout->getChild('head')
-    //         ->addCss('product/list.css');
-    //     $child = $layout->getChild('content');
+    public function listAction()
+    {
+        $layout = $this->getLayout();
+        $layout->getChild('head')
+            ->addCss('loancalculator/list.css');
+        $child = $layout->getChild('content');
 
-    //     $productList = $layout->createBlock('catalog/admin_product_list');
+        $productList = $layout->createBlock('catalog/admin_product_list');
 
-    //     $child->addChild('list', $productList);
-    //     $layout->toHtml();
-    // }
+        $child->addChild('list', $productList);
+        $layout->toHtml();
+    }
 }

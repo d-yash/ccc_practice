@@ -1,5 +1,6 @@
 <?php
     $bankRateData = $this->getBankRate();
+    
 ?>
 
     <div class="form">
@@ -26,9 +27,9 @@
                 </div>
                 <div>
                     <label for="term">Term:</label>
-                    <select name="loan_calculator[term]" id="category">
+                    <select name="loan_calculator[term]">
                         <?php for ($i = 1; $i <= 20; $i++) : ?>
-                            <option value=<?php echo $i ?> class="term">
+                            <option value=<?php echo $i ?> >
                                 <?php echo $i; ?>
                             </option>;
                         <?php endfor; ?>

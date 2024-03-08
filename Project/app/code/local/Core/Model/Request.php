@@ -35,7 +35,7 @@ class Core_Model_Request
     public function getRequestUri()
     {
         $requestUri = $_SERVER['REQUEST_URI'];
-        $requestUri = str_replace('/Project/', '', $requestUri);
+        $requestUri = str_replace('/Practice/Project/', '', $requestUri);
         if (strpos($requestUri, '?') !== false)
             $requestUri = stristr($requestUri, '?', true);
         return $requestUri;

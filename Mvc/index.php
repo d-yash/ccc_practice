@@ -1,5 +1,5 @@
 <?php
-include "../mvc/app/code/local/autoload.php";
-include "../mvc/app/mage.php";
+include ("app/code/local/autoload.php");
+include ("app/Mage.php");
 
-mage::init();
+Mage::init();

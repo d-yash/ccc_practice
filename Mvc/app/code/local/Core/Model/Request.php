@@ -1,79 +1,79 @@
 <?php
 class Core_Model_Request
 {
-    protected $_moduleName;
-    protected $_controllerName;
-    protected $_actionName;
+    protected $_controllerName, $_moduleName, $_actionName;
     public function __construct()
     {
-        $uri = $this->getRequestUri();
-        $uri = array_filter(explode("/", $uri));
-        $this->_moduleName = isset($uri[0]) ? $uri[0] : 'page';
-        $this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
-        $this->_actionName =  isset($uri[2]) ? $uri[2] : 'index';
+        $requestUri = $this->getRequestUri();
+        $requestUri = array_filter(explode("/", $requestUri));
+        $this->_moduleName = isset($requestUri[0]) ? $requestUri[0] : "Page";
+        $this->_controllerName = isset($requestUri[1]) ? $requestUri[1] : "Index";
+        $this->_actionName = isset($requestUri[2]) ? $requestUri[2] : 'Index';
     }
-    public function getModuleName()
-    {
-        return $this->_moduleName;
+    public function getFullControllerClass(){
+        $controllerClass = ucwords(implode('_', [$this->getModuleName(), 'Controller', $this->getControllerName()]), "_");
+        return $controllerClass;
     }
     public function getControllerName()
     {
-        return $this->_controllerName;
+        if (isset($this->_controllerName)) {
+            return $this->_controllerName;
+        }
     }
     public function getActionName()
     {
-        return $this->_actionName;
+        if (isset($this->_actionName)) {
+            return $this->_actionName;
+        }
     }
-    public function getFullControllerClass()
+    public function getModuleName()
     {
-        return ucfirst($this->_moduleName) . "_Controller_" . ucfirst($this->_controllerName);
+        if (isset($this->_moduleName)) {
+            return $this->_moduleName;
+        }
     }
-    public function getParams($key = '', $arg=null)
-    {
-        return ($key == '')
-            ? $_REQUEST
-            : (isset($_REQUEST[$key])
-                ? $_REQUEST[$key]
-                : ((!is_null($arg)) ? $arg : '')
-            );
-    }
-    public function getPostData($key = '')
-    {
-        return ($key == '')
-            ? $_POST
-            : (isset($_POST[$key])
-                ? $_POST[$key]
-                : ''
-            );
-    }
-    public function getQueryData($key = '')
-    {
-        return ($key == '')
-            ? $_GET
-            : (isset($_GET[$key])
-                ? $_GET[$key]
-                : ''
-            );
-    }
-    
     public function getRequestUri()
     {
-        $request = $_SERVER["REQUEST_URI"];
-        $uri = str_replace("/Practice/Mvc/", "", $request);
-        if(str_contains($uri,"?")) {
-            $uri = stristr($uri, '?', True);
+        $requestUri = $_SERVER['REQUEST_URI'];
+        $requestUri = str_replace('/Practice/Mvc/', '', $requestUri);
+        if (strpos($requestUri, '?') !== false) {
+            $requestUri = stristr($requestUri, '?', true);
         }
-        return $uri;
+        return $requestUri;
     }
-    public function getFileData(string $key = '')
-    {
-        return $key == '' ? $_FILES : (isset($_FILES[$key]) ? $_FILES[$key] : '');
+    public function getParams($key = '', $arg = null){
+        return($key == '')
+            ? $_REQUEST 
+            : ((isset($_REQUEST[$key]))
+                ? $_REQUEST[$key]
+                : ((!is_null($arg) ? $arg : ''))
+            );
     }
-    public function isPost()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            return true;
-        }
-        return false;
+    public function getPostData(string $key = ''){
+        return $key == '' 
+        ? $_POST 
+        : (isset($_POST[$key]) 
+            ? $_POST[$key] 
+            : ''
+        );
+    }
+    public function getFileData(string $key = ''){
+        return $key == '' 
+        ? $_FILES 
+        : (isset($_FILES[$key]) 
+            ? $_FILES[$key] 
+            : ''
+        );
+    }
+    public function getQueryData($key = ''){
+        return $key == ''
+        ? $_GET
+        : (isset($_GET[$key])
+            ? $_GET[$key]
+            : ''
+        );
+    }
+    public function isPost() : bool{
+        return $_SERVER['REQUEST_METHOD'] == 'POST' ? true : false;
     }
 }

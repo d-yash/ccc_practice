@@ -2,8 +2,8 @@
 
 class Mage
 {
-    protected static $_baseDir = 'C:/xampp/htdocs/Project';
-    protected static $_baseUrl = 'http://localhost/Project';
+    protected static $_baseDir = 'C:/xampp/htdocs/Practice/Project';
+    protected static $_baseUrl = 'http://localhost/Practice/Project';
     private static $_singleton = [];
 
     public static function init()

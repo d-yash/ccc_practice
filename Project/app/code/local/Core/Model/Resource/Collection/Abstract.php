@@ -53,6 +53,9 @@ class Core_Model_Resource_Collection_Abstract
                             case 'like':
                                 $whereCondition[] = "{$column} LIKE '{$_v}'";
                                 break;
+                            case 'gt':
+                                $whereCondition[] = "{$column} > {$_v}";
+                                break;
                         }
                     }
                 }

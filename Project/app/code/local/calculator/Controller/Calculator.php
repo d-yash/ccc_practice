@@ -15,8 +15,12 @@ class Calculator_Controller_Calculator extends Core_Controller_Front_Action
     public function saveAction()
     {
         $data = $this->getRequest()->getParams('calculator');
-        Mage::getModel('calculator/calculator')->addData('session_id', 1)
+        $result = Mage::getModel('calculator/calculator')->addData('session_id', 1)
         ->setData($data)
         ->save();
+        if($result){
+            
+        }
+        $this->setRedirect('calculator/calculator/form');
     }   
 }

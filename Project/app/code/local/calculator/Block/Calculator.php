@@ -6,8 +6,18 @@ class Calculator_Block_Calculator extends Core_Block_Template
     {
         $this->setTemplate('calculator/form.phtml');
     }
-    public function getOperator()
-    {
+    // public function getOperator()
+    // {
+    //     $bindding = [
+    //         '+' => 'add',
+    //         '-' => 'sub',
+    //         '*' => 'mul',
+    //         '/' => 'div',
+    //         '%' => 'modulo',
+    //     ];
+    //     return isset($this->_data['operator']) ? $bindding[$this->_data['operator']] : '';
+    // }
+    public function getAllOperator(){
         $bindding = [
             '+' => 'add',
             '-' => 'sub',
@@ -15,9 +25,7 @@ class Calculator_Block_Calculator extends Core_Block_Template
             '/' => 'div',
             '%' => 'modulo',
         ];
-        return isset($this->_data['operator']) ? $bindding[$this->_data['operator']] : '';
-    }
-    public function getAllOperator(){
-        return array('+','-','*','/','%');
+        // return array('+','-','*','/','%');
+        return $bindding;
     }
 }

@@ -23,9 +23,9 @@
                 <div>
                     <label for="operator">Operator:</label>
                     <select name="calculator[operator]">
-                        <?php foreach($operator as $_operator): ?>
-                            <option value=<?php echo $this->getOperator() ?> >
-                                <?php echo $_operator; ?>
+                        <?php foreach($operator as $_opKey => $_opValue): ?>
+                            <option value=<?php echo $_opValue ?> >
+                                <?php echo $_opKey ?>
                             </option>;
                         <?php endforeach; ?>
                     </select>

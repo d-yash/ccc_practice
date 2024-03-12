@@ -7,7 +7,7 @@ class Loancalculator_Model_Calculator extends Core_Model_Abstract
         $this->_resourceClass = 'Loancalculator_Model_Resource_Calculator';
         $this->_collectionClass = 'Loancalculator_Model_Resource_Collection_Calculator';
     }
-    public function _beforeSave(){
+    protected function _beforeSave(){
         $bankCode = $this->getBankCode();
         $r = Mage::getBlock('loancalculator/bank')->getBankRateByCode($bankCode) / 12;
         $p = $this->getLoanAmount();

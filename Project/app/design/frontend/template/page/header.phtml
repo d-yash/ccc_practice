@@ -12,7 +12,7 @@
         </a>
         <!-- </div> -->
         <div class="dropdown"> <a class="btn" href="<?php echo $this->getUrl("catalog/product/view"); ?>">Product</a></div>
-        <div class="dropdown"> <a class="btn" href="<?php echo $this->getUrl("customer/order"); ?>">Order</a></div>
+        <div class="dropdown"> <a class="btn" href="<?php echo $this->getUrl("customer/order/list"); ?>">Order</a></div>
 
         <div class="dropdown">
           <?php if (Mage::getSingleton('core/session')->get('logged_in_customer_id')) { ?>

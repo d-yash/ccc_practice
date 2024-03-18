@@ -10,7 +10,6 @@ class Order_Block_List extends Core_Block_Template
         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
         return Mage::getModel('sales/order')
             ->getCollection()
-            ->addFieldToFilter('customer_id', $customerId)
             ->getData();
     }
     public function getCustomerName($customerId){

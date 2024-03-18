@@ -2,7 +2,7 @@
 
 class Sales_Controller_Quote extends Core_Controller_Front_Action
 {
-
+    protected $_allowedAction = ['add', 'delete'];
     public function addAction()
     {
         $quoteData = $this->getRequest()
@@ -49,6 +49,6 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
         $quoteModel->convert();
         Mage::getSingleton('core/session')->remove('quote_id');
         echo "<script>alert('Order placed successfully')</script>";
-        $this->setRedirect('');
+        $this->setRedirect('cart/checkout/success');
     }
 }

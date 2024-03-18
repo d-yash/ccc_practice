@@ -6,4 +6,11 @@ class Page_Block_Header extends Core_Block_Template
     {
         $this->setTemplate('page/header.phtml');
     }
+    public function getCartCount(){
+        $items = Mage::getModel('sales/quote')
+            ->initQuote()
+            ->getItemCollection();
+        // die;
+        return count($items) > 0 ? count($items) : 0;
+    }
 }

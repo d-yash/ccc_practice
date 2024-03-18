@@ -10,6 +10,7 @@ class Customer_Controller_Address extends Core_Controller_Front_Action
     {
         $customerAddressData = $this->getRequest()
             ->getParams('customer_address');
+
         Mage::getModel('customer/address')
             ->setData($customerAddressData)
             ->removeData('email')

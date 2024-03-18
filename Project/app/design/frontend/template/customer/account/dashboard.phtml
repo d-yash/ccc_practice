@@ -1,6 +1,5 @@
 <?php 
     $customerDetails = $this->getCustomerDetails();
-
 ?>
 <div class="container">
     <header>
@@ -11,15 +10,15 @@
         <div class="column personal-info">
             <h4>Personal Information</h4>
             <ul class="info-list">
-                <li><strong>Customer ID:</strong> <span id="customer-id">1</span></li>
-                <li><strong>Email:</strong> <span id="customer-email">demo@gmail.com</span></li>
-                <li><strong>First Name:</strong> <span id="first-name">yash</span></li>
-                <li><strong>Last Name:</strong> <span id="last-name">dhuliya</span></li>
-                <li><strong>Password:</strong> <span id="password">123</span></li>
+                <li><strong>Customer ID:</strong> <span id="customer-id"><?php echo $customerDetails->getCustomerId();?></span></li>
+                <li><strong>Email:</strong> <span id="customer-email"><?php echo $customerDetails->getCustomerEmail();?></span></li>
+                <li><strong>First Name:</strong> <span id="first-name"><?php echo $customerDetails->getFirstName();?></span></li>
+                <li><strong>Last Name:</strong> <span id="last-name"><?php echo $customerDetails->getLastName();?></span></li>
+                <!-- <li><strong>Password:</strong> <span id="password"><?php //echo $customerDetails->getPassword();?></span></li> -->
             </ul>
         </div>
 
-        <div class="column billing-info">
+        <!-- <div class="column billing-info">
             <h4>Billing Information</h4>
             <ul class="info-list">
                 <li><strong>Address:</strong> <span id="billing-address"></span></li>
@@ -48,6 +47,6 @@
             <ul class="info-list">
                 <li><strong>Default:</strong> <span id="default">1</span></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </div>

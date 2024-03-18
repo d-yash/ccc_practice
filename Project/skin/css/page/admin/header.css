@@ -141,4 +141,11 @@
     float: left;
     margin-bottom: 10px;
   }
+
+.header-left {
+  float: left;
+}
+.header-left h2{
+  margin: 0;
+}
   

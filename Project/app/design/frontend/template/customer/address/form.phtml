@@ -82,7 +82,7 @@
         <h2>Customer Address Form</h2>
         <form method="POST" action="<?php echo $this->getUrl('sales/quote/saveAddress') ?>">
             <div>
-                <input type="hidden" value="<?php echo $this->getCustomerFirstAddress()->getCustomerId() ?>" name="customer_address[customer_id]">
+                <input type="hidden" value="<?php echo $this->getCustomerId() ?>" name="customer_address[customer_id]">
             </div>
             <div>
                 <input type="hidden" value="<?php echo $this->getCustomerEmail() ?>" name="customer_address[email]">

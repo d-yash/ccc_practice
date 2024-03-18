@@ -31,7 +31,9 @@ class Core_Model_Abstract
     }
     public function getId()
     {
-        return $this->_data[$this->getResource()->getPrimaryKey()];
+        return isset($this->_data[$this->getResource()->getPrimaryKey()]) 
+            ? $this->_data[$this->getResource()->getPrimaryKey()] 
+            : 0;
     }
     public function getResource()
     {
@@ -103,6 +105,7 @@ class Core_Model_Abstract
     }
     public function save()
     {
+
         $this->_beforeSave();
         $this->getResource()->save($this);
         $this->_afterSave();

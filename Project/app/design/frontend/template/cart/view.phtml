@@ -13,7 +13,7 @@ $quoteItems = $this->getQuoteItems();
                     <input type="hidden" name="sales_quote[item_id]" value="<?php echo $quoteItem->getItemId() ?>">
 
                     <div class="cart-item">
-                        <img src=<?php echo $this->getUrl('media/product/sample.jpg') ?> alt="Product Img">
+                        <img src=<?php echo $this->getUrl('media/product/' . $quoteItem->getProduct()->getImageLink()) ?> alt="Product Img">
                         <div class="item-details">
                             <p>
                                 <?php echo $quoteItem->getProduct()->getName() ?>

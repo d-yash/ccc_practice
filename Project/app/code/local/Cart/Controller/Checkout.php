@@ -27,4 +27,16 @@ class Cart_Controller_Checkout extends Core_Controller_Front_Action
         $content->addChild('form', $methodBlock);
         $layout->toHtml();
     }
+    public function successAction()
+    {
+        $layout = $this->getLayout();
+        $layout->getChild('head')
+            ->addCss('cart/checkout/success.css');
+        $content = $layout->getChild('content');
+
+        $successPage = Mage::getBlock('cart/checkout_success');
+        $content->addChild('method', $successPage);
+
+        $layout->toHtml();
+    }
 }

@@ -19,15 +19,10 @@ class Customer_Block_Address extends Core_Block_Template
     {
         return Mage::getSingleton('core/session')->get('quote_id');
     }
-    public function getCustomerFirstAddress()
+    public function getCustomerId()
     {
-        $customerId = Mage::getSingleton('core/session')
+        return Mage::getSingleton('core/session')
             ->get('logged_in_customer_id');
-        $customerAddressModel = Mage::getModel('customer/address');
-        $customerFirstAddress = $customerAddressModel->getCollection()
-            ->addFieldToFilter('customer_id', $customerId)
-            ->getFirstItem();
-        return $customerFirstAddress ? $customerFirstAddress : $customerAddressModel;
     }
 
     public function getCustomerEmail()

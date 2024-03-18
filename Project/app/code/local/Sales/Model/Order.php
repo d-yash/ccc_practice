@@ -48,6 +48,12 @@ class Sales_Model_Order extends Core_Model_Abstract
         }
 
     }
+    public function getItemCollection()
+    {
+        return Mage::getModel('sales/order_item')
+            ->getCollection()
+            ->addFieldToFilter('order_id', $this->getId())->getData();
+    }
     public function addOrderShipping($quoteShipping)
     {
         if ($this->getId()) {

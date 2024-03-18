@@ -2,7 +2,8 @@
 
 class Core_Model_Resource_Abstract
 {
-    protected $_tableName = '', $_primaryKey = '';
+    protected $_tableName = '';
+    protected $_primaryKey = '';
 
     public function init($tableName, $primaryKey)
     {
@@ -75,5 +76,6 @@ class Core_Model_Resource_Abstract
         }
         $columns = implode(", ", $columns);
         return "UPDATE {$tablename} SET {$columns} WHERE {$this->getPrimaryKey()} = {$primaryKey};";
+        
     }
 }

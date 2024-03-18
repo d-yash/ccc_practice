@@ -14,4 +14,7 @@ class Customer_Block_Account_Dashboard extends Core_Block_Template
             ->load($customerId);
         return $customerData;
     }
+    public function getCustomerAddress(){
+        
+    }
 }

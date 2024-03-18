@@ -27,9 +27,6 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
     {
         $data = $this->getRequest()->getParams('catalog_product');
         $imageFileData = $this->getRequest()->getFileData('image_link');
-        // echo "<pre>";
-        // print_r($imageFileData);
-        // die;
         $productFileImage = $imageFileData['name'];
 
         if (!empty($productFileImage)) {

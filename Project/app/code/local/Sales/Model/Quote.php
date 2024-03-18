@@ -9,18 +9,37 @@ class Sales_Model_Quote extends Core_Model_Abstract
     }
     public function initQuote()
     {
-        $quoteId = Mage::getSingleton('core/session')->get('quote_id');
+        $sessionModel = Mage::getSingleton('core/session');
+        $customerId = $sessionModel->get('logged_in_customer_id', 0);
+        $quoteId = $sessionModel->get('quote_id', 0);
         if (!$quoteId) {
             $quote = Mage::getSingleton('sales/quote')
-                ->setData(['tax_percent' => 0, 'grand_total' => 0])
-                ->save();
-            Mage::getSingleton('core/session')
-                ->set('quote_id', $quote->getId());
-            $quoteId = $quote->getId();
-            $this->load($quoteId);
-        }else{
-            $this->load($quoteId);
+                ->setData(['tax_percent' => 0, 'grand_total' => 0]);
+            if ($customerId) {
+                $existingCustomer = Mage::getModel('sales/quote')
+                    ->getCollection()
+                    ->addFieldToFilter('customer_id', $customerId)
+                    ->addFieldToFilter('order_id', 0)
+                    ->addOrderBy('quote_id', 'DESC')
+                    ->getFirstItem();
+
+                if ($existingCustomer) {
+                    $quote->addData('quote_id', $existingCustomer->getId());
+                }
+                $quote->addData('customer_id', $customerId);
+            }
+            $quoteId = $quote->save()->getId();
+            $sessionModel->set('quote_id', $quoteId);
+        } 
+        else{
+            if($customerId){
+                Mage::getModel('sales/quote')->load($quoteId)
+                    ->addData('customer_id', $customerId)
+                    ->save()
+                    ->getId();
+            }
         }
+        $this->load($quoteId);
         return $this;
     }
     public function getItemCollection()
@@ -148,7 +167,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             if ($this->getShippingMethod()) {
                 $orderModel->addOrderShipping($this->getShippingMethod()->getData());
             }
-            
+
             $this->addData('order_id', $orderId)
                 ->save();
         }

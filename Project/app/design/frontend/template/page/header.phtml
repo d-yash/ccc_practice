@@ -1,27 +1,35 @@
 <div class="header">
-    <div class="header-left">Project</div>
-    <div class="header-right">
+  <div class="header-left"> <a class="btn" href="<?php echo $this->getUrl(""); ?>">Project</a></div>
+  <div class="header-right">
     <div class="pill-nav" id="myDIV">
       <ul>
-      <div class="dropdown"> <a class="btn"href="<?php echo$this->getUrl("");?>">Home</a></div>
-      <div class="dropdown"> <a class="btn"href="<?php echo$this->getUrl("catalog/product/view");?>">Product</a></div>
-      <div class="dropdown"> <a class="btn"href="<?php echo$this->getUrl("cart");?>">Cart</a></div>
-      <div class="dropdown"> <a class="btn"href="<?php echo$this->getUrl("customer/order");?>">Order</a></div>
+        <!-- <div class="dropdown"> <a class="btn" href="<?php //echo $this->getUrl("cart"); 
+                                                          ?>">Cart</a></div> -->
+        <!-- <div class="dropdown"> -->
+        <a class="cart-icon" href="<?php echo $this->getUrl("cart");?>">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="cart-count"><?php echo $this->getCartCount() ?></span>
+        </a>
+        <!-- </div> -->
+        <div class="dropdown"> <a class="btn" href="<?php echo $this->getUrl("catalog/product/view"); ?>">Product</a></div>
+        <div class="dropdown"> <a class="btn" href="<?php echo $this->getUrl("customer/order"); ?>">Order</a></div>
 
         <div class="dropdown">
-        <?php if(Mage::getSingleton('core/session')->get('logged_in_customer_id')){ ?>
-          <a class="btn">  Profile </a>
-          <div class="dropdown-content">
-            <a  href="<?php echo $this->getUrl("customer/account/dashboard"); ?>">Profile</a>
-            <a  href="<?php echo $this->getUrl("customer/account/forgotpassword"); ?>">password?</a>
-            <a  href="<?php echo$this->getUrl("customer/account/logout");?>">Log Out</a>
+          <?php if (Mage::getSingleton('core/session')->get('logged_in_customer_id')) { ?>
+            <a class="btn"> Profile </a>
+            <div class="dropdown-content">
+              <a href="<?php echo $this->getUrl("customer/account/dashboard"); ?>">Profile</a>
+              <a href="<?php echo $this->getUrl("customer/account/forgotpassword"); ?>">password?</a>
+              <a href="<?php echo $this->getUrl("customer/account/logout"); ?>">Log Out</a>
 
-          <?php }else{ ?>
-        <a class='btn'  href="<?php echo$this->getUrl("customer/account/login");?>">Login</a>
-        <?php }?>
-        </div>
+            <?php } else { ?>
+              <a class='btn' href="<?php echo $this->getUrl("customer/account/login"); ?>">Login</a>
+            <?php } ?>
+            </div>
         </div>
       </ul>
     </div>
   </div>
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

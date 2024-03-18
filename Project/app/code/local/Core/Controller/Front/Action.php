@@ -39,4 +39,11 @@ class Core_Controller_Front_Action
         $url = Mage::getBaseUrl($url);
         header("Location: {$url}");
     }
+    public function checkDataAndRedirect(array $data, $redirect){
+        foreach($data as $_data){
+            if(!$_data){
+                $this->setRedirect($redirect);
+            }   
+        }
+    }
 }

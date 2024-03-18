@@ -8,6 +8,7 @@ class Core_Controller_Admin_Action extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         $layout->setTemplate('core/admin.phtml');
         $layout->getChild('header')->setTemplate('page/admin/header.phtml');
+        $layout->getChild('head')->addCss('page/admin/header.css');
         $layout->getChild('footer')->setTemplate('page/admin/footer.phtml');
 
         if (

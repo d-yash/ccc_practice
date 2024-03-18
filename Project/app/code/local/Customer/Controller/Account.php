@@ -45,10 +45,10 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                 ->addFieldToFilter('password', $loginData['password'])
                 ->getData();
 
-            if (count($loginData)) {
+            if (count($loginData) > 0) {
                 Mage::getSingleton('core/session')
                     ->set('logged_in_customer_id', $loginData[0]->getId());
-                $this->setRedirect('customer/account/dashboard');
+                $this->setRedirect('');
             } else {
                 $this->setRedirect('customer/account/login');
             }
@@ -73,16 +73,13 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             ->get('logged_in_customer_id');
 
         if ($customerId) {
-            // $customerData = Mage::getModel('customer/customer')
-            //     ->load($customerId);
-
             $layout = $this->getLayout();
             $content = $layout->getChild("content");
 
             $layout->getChild('head')
                 ->addCss('product/view.css');
-            
-                $dashboard = Mage::getBlock('customer/account_dashboard');
+
+            $dashboard = Mage::getBlock('customer/account_dashboard');
             $content->addChild('form', $dashboard);
             $layout->toHtml();
         }
@@ -112,5 +109,9 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 
             $layout->toHtml();
         }
+    }
+    public function logoutAction(){
+        Mage::getSingleton('core/session')->destroy();
+        $this->setRedirect('customer/account/login');
     }
 }

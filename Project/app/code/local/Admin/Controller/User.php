@@ -33,4 +33,8 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
             $layout->toHtml();
         }
     }
+    public function logoutAction(){
+        Mage::getSingleton('core/session')->destroy();
+        $this->setRedirect('admin/user/login');
+    }
 }

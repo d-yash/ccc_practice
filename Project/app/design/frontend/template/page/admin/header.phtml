@@ -1,10 +1,36 @@
-<header class="header">
-    <div class="logo">Admin Panel</div>
-    <nav class="nav">
-        <a href="<?php echo $this->getUrl('admin/catalog_product/list') ?>">Product List</a>
-        <a href="<?php echo $this->getUrl('admin/catalog_product/form') ?>">Add Product</a>
-        <a href="<?php echo $this->getUrl('admin/catalog_category/list') ?>">Category List</a>
-        <a href="<?php echo $this->getUrl('admin/catalog_category/form') ?>">Add Category</a>
-        <a href="<?php echo $this->getUrl('admin/banner/form') ?>">Add Banner</a>
-    </nav>
-</header>
+<div class="header">
+  <!-- <a href="#"><img id="logo" src=<?php //echo Mage::getBaseUrl() . "\skin\image\ccc.jpg" ?> alt="Your Logo"></a> -->
+  <h2>Admin Portal</h2>
+  <div class="header-right">
+    <div class="pill-nav" id="myDIV">
+      <ul>
+      <div class="dropdown">
+          <a  class="btn" href="<?php echo $this->getUrl("admin"); ?>">  Home </a>
+          <a  class="btn" href="<?php echo $this->getUrl("admin/order"); ?>"> All Order </a>
+        </div>
+        <div class="dropdown">
+          <a class="btn">  Product </a>
+          <div class="dropdown-content">
+            <a href="<?php echo $this->getUrl("admin/catalog_product/form"); ?>">Product Form</a>
+            <a href=" <?php echo $this->getUrl("admin/catalog_product/list"); ?>">Product List</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="btn">  Category </a>
+          <div class="dropdown-content">
+            <a href="<?php echo $this->getUrl("admin/catalog_category/form"); ?>">Category Form</a>
+            <a href=" <?php echo $this->getUrl("admin/catalog_category/list"); ?>">Category List</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="btn">  Banner </a>
+          <div class="dropdown-content">
+            <a href="<?php echo $this->getUrl("admin/banner/form"); ?>">Banner Form</a>
+            <a href=" <?php echo $this->getUrl("admin/banner/list"); ?>">Category List</a>
+          </div>
+        </div>
+        <a class="btn" href="<?php echo $this->getUrl("admin/user/logout"); ?>">Log Out</a>
+      </ul>
+    </div>
+  </div>
+</div>

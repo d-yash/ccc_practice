@@ -7,7 +7,7 @@ class Cart_Block_View extends Core_Block_Template
         $this->setTemplate('cart/view.phtml');
     }
     public function getQuoteItems()
-    {
+    {       
         $quoteId = Mage::getSingleton('core/session')
             ->get('quote_id');
 

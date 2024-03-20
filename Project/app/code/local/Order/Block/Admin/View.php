@@ -43,12 +43,12 @@ class Order_Block_Admin_View extends Core_Block_Template
     }
     public function getStatus(){
         return [
-            "pending",
-            "shipped",
-            "cancelled",
-            "declined", 
-            "refunded", 
-            "delivered"
+            "pending"=>"Pending",
+            "shipped"=>"Shipped",
+            "cancelled"=>"Cancelled",
+            "declined"=>"Declined", 
+            "refunded"=>"Refunded", 
+            "delivered"=>"Delivered"
         ];
     }
 }

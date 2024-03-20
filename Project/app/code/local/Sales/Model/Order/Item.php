@@ -23,6 +23,8 @@ class Sales_Model_Order_Item extends Core_Model_Abstract
             ->removeData('quote_id')
             ->addData('order_id', $order->getId())
             ->save();
+        $inventory = (int)$this->getProduct()->getInventory() - (int)$this->getQty();
+        $this->getProduct()->addData('inventory', $inventory)->save();
         return $this;
     }
 }

@@ -10,7 +10,8 @@
                 <th>Total Items</th>
                 <th>Total Amount</th>
                 <th>Customer Name</th>
-                <th colspan="2">Action</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,8 +29,13 @@
                     <td>
                         <?php echo $this->getCustomerName($_order->getCustomerId());?>
                     </td>
-                    <td><a
-                            href="<?php echo $this->getUrl("") ?>">Change Status</a>
+                    <td>
+                        <?php echo $_order->getStatus();?>
+                    </td>
+                    <td>
+                        <a
+                            href="<?php echo $this->getUrl("admin/order/view?order_id={$_order->getId()}") ?>">View
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -9,7 +9,8 @@
                 <th>Order Number</th>
                 <th>Total Items</th>
                 <th>Total Amount</th>
-                <th colspan="2">Action</th>
+                <th>Cancel Order</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,10 @@
                         <?php echo $_order->getGrandTotal();?>
                     </td>
                     <td><a
-                            href="<?php echo $this->getUrl("") ?>">View</a>
+                            href="<?php echo $this->getUrl("") ?>">Cancel</a>
+                    </td>
+                    <td><a
+                            href="<?php echo $this->getUrl("customer/order/view?order_id={$_order->getId()}") ?>">View</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -1,10 +1,10 @@
 <?php
 
-class Order_Block_List extends Core_Block_Template
+class Order_Block_Admin_List extends Core_Block_Template
 {
     public function __construct()
     {
-        $this->setTemplate('order/list.phtml');
+        $this->setTemplate('order/admin/list.phtml');
     }
     public function getOrders(){
         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');

@@ -8,12 +8,21 @@ class Admin_Controller_Order extends Core_Controller_Admin_Action
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('order/list.css');
+            ->addCss('order/admin/list.css');
 
-        $content = $layout->getChild("content");
+        $list = Mage::getBlock('order/admin_list');
+        $layout->getChild("content")->addChild('list', $list);
 
-        $list = Mage::getBlock('order/list');
-        $content->addChild('list', $list);
+        $layout->toHtml();
+    }
+    public function viewAction()
+    {
+        $layout = $this->getLayout();
+        $layout->getChild('head')
+            ->addCss('order/admin/view.css');
+
+        $view  = Mage::getBlock('order/admin_view');
+        $layout->getChild('content')->addChild('view', $view);
 
         $layout->toHtml();
     }

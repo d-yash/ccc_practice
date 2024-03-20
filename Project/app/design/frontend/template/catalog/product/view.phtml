@@ -35,7 +35,7 @@
                             </div>
                             <div class="row">
                                 <label for="quantity">Quantity : </label>
-                                <input type="text" name="sales_quote[qty]" id="quentity" </div>
+                                <input type="number" name="sales_quote[qty]" id="quentity" min="1" max="<?php echo $product->getInventory();?>">
                             </div>
                     </td>
 

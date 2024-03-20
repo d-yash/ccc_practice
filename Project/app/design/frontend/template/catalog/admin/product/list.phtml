@@ -5,6 +5,7 @@
             <tr>
                 <th>Name</th>
                 <th>SKU</th>
+                <th>Inventory</th>
                 <th>Status</th>
                 <th>Category</th>
                 <th>Color</th>
@@ -12,13 +13,16 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($this->getProductList() as $_product): ?>
+            <?php foreach ($this->getProductList() as $_product) : ?>
                 <tr>
                     <td>
                         <?php echo $_product->getName() ?>
                     </td>
                     <td>
                         <?php echo $_product->getSku() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getInventory()?>
                     </td>
                     <td>
                         <?php echo $_product->getStatus() ?>
@@ -29,11 +33,9 @@
                     <td>
                         <?php echo $_product->getColor() ?>
                     </td>
-                    <td><a
-                            href="<?php echo $this->getUrl("admin/catalog_product/delete?product_id={$_product->getId()}") ?>">Delete</a>
+                    <td><a href="<?php echo $this->getUrl("admin/catalog_product/delete?product_id={$_product->getId()}") ?>">Delete</a>
                     </td>
-                    <td><a
-                            href="<?php echo $this->getUrl("admin/catalog_product/form?product_id={$_product->getId()}") ?>">Update</a>
+                    <td><a href="<?php echo $this->getUrl("admin/catalog_product/form?product_id={$_product->getId()}") ?>">Update</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

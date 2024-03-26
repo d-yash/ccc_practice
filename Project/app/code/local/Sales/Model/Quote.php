@@ -33,7 +33,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         } 
         else{
             if($customerId){
-                Mage::getModel('sales/quote')->load($quoteId)
+                $quoteId = Mage::getModel('sales/quote')->load($quoteId)
                     ->addData('customer_id', $customerId)
                     ->save()
                     ->getId();

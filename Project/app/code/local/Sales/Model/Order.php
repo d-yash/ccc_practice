@@ -1,6 +1,7 @@
 <?php
 class Sales_Model_Order extends Core_Model_Abstract
 {
+    const INITIAL_ORDER_NUMBER = 1;
     public function init()
     {
         $this->_resourceClass = 'Sales_Model_Resource_Order';
@@ -8,20 +9,16 @@ class Sales_Model_Order extends Core_Model_Abstract
     }
     public function _beforeSave()
     {
-        $orderNumber = rand(1000000, 9999999);
-
-        $flag = True;
-        while ($flag) {
-            $existOrderNumber = Mage::getModel('sales/order')
-                ->getCollection()
-                ->addFieldToFilter('order_number', $orderNumber)
+        if (empty ($this->getId())) {
+            $orderItem = $this->getCollection()
+                ->addOrderBy('order_number', 'DESC')
                 ->getFirstItem();
-            if (!$existOrderNumber) {
-                $flag = False;
+            if (is_null($orderItem)) {
+                $this->addData('order_number', self::INITIAL_ORDER_NUMBER);
+            } else {
+                $this->addData('order_number', (int) $orderItem->getOrderNumber() + 1);
             }
-            $orderNumber = rand(1000000, 9999999);
         }
-        $this->addData('order_number', $orderNumber);
     }
     public function addOrderItem($quoteItem)
     {

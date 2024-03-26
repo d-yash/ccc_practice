@@ -67,12 +67,12 @@ class Core_Model_Resource_Abstract
         $values = implode(", ", $values);
         return "INSERT INTO {$tablename} ({$columns}) VALUES ({$values})";
     }
-
+    
     function updateSql($tablename, $data, $primaryKey)
     {
         $columns = [];
         foreach ($data as $col => $val) {
-            $columns[] = "`$col` = '$val'";
+            $columns[] = "`$col` = " . "'" . addslashes($val) . "'";
         }
         $columns = implode(", ", $columns);
         return "UPDATE {$tablename} SET {$columns} WHERE {$this->getPrimaryKey()} = {$primaryKey};";

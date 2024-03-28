@@ -1,0 +1,12 @@
+<div>
+    <label for="branch">Branch :</label>
+    <select id="branch" name="branch" onchange="renderAgent(this.value)">
+        <option value="">Select the Branch</option>
+        <?php foreach ($this->getBranch() as $_branch) : ?>
+            <option value="<?php echo $_branch->getBranchId() ?>"><?php echo $_branch->getName() ?></option>
+        <?php endforeach ?>
+    </select>
+    <br><br>
+    <label for="agent">Agent :</label>
+    <span id="agent">Select Branch First!</span>
+</div>

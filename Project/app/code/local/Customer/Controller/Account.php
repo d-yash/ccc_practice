@@ -113,6 +113,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     }
     public function logoutAction(){
         Mage::getSingleton('core/session')->destroy();
-        $this->setRedirect('customer/account/login');
+        $this->setRedirect('');
     }
 }

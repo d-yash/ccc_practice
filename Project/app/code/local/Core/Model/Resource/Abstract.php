@@ -37,7 +37,6 @@ class Core_Model_Resource_Abstract
         $query = "DELETE FROM {$this->getTableName()} WHERE {$this->getPrimaryKey()} = {$abstract->getId()}";
         return $this->getAdapter()->delete($query);
     }
-
     public function save(Core_Model_Abstract $abstract)
     {
         $data = $abstract->getData();
@@ -55,7 +54,6 @@ class Core_Model_Resource_Abstract
             $abstract->setId($id);
         }
     }
-
     public function insertSql($tablename, $data)
     {
         $columns = $values = [];

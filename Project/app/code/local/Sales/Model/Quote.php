@@ -22,7 +22,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
                     ->addFieldToFilter('order_id', 0)
                     ->addOrderBy('quote_id', 'DESC')
                     ->getFirstItem();
-
                 if ($existingCustomer) {
                     $quote->addData('quote_id', $existingCustomer->getId());
                 }
@@ -33,7 +32,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         } 
         else{
             if($customerId){
-                $quoteId = Mage::getModel('sales/quote')->load($quoteId)
+                $quoteId = Mage::getSingleton('sales/quote')->load($quoteId)
                     ->addData('customer_id', $customerId)
                     ->save()
                     ->getId();
